@@ -2,13 +2,20 @@
         width: 100%;
         width: 100vw;
         height: 200px;
-        z-index: -200;
     }
     
     .headerText {
         color: #001a33;
         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         font-style: italic;
+        font-size: 70px;
+    }
+
+    .myHeader { 
+        margin: -110px;
+        z-index: 100;
+        position: relative;
+        margin-bottom: 20px;
     }
     
     .searchRow {
@@ -51,4 +58,26 @@
             margin-top: 50px;
             ;
         }
+    }
+
+    .social [class*="fa fa-"] {
+        background-color:#4267B2;
+        border-radius: 30px;
+        color: #fff;
+        /* display: inline-block; */
+        height: 40px;
+        /* line-height: 30px; */
+        margin: auto 3px;
+        width: 40px;
+        font-size: 40px;
+        text-align: center;
+        margin-top: 30px;
+    }
+    
+    .social [class*="fa fa-"]:hover {
+        background-color: #46c0fb; 
+    }
+    
+    a {
+        text-decoration: none;
     }

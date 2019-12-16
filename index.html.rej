@@ -1,0 +1,10 @@
+diff a/index.html b/index.html	(rejected hunks)
+@@ -86,7 +86,7 @@
+                 </div>
+               </div>
+             </div>
+-            <div class="col s4 m4">
++            <div class="col s4 m4" id="card-2">
+                 <div class="card mart">
+                   <div class="card-image mart">
+                     <img src="./images/martini.jpg">
