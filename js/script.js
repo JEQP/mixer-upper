@@ -131,7 +131,7 @@ function getCocktail() {
         console.log("img: " + response.drinks[0].strDrinkThumb); // image
         console.log("ing: " + response.drinks[0].strIngredient1); // ingredients are listed seperately. We'll need code to go through and eliminate null entries
         console.log("measure: " + response.drinks[0].strMeasure1); // this is the measure for the ingredients. 1 matches with 1
-
+        fillCards(response);
 
     });
 }
@@ -152,7 +152,47 @@ function getIngredSuggestions() {
 }
 
 
+// This function is to fill the cards on the page with relevant data
+function fillCards(response) {
+    // Check how many items are in the array returned
+    // do a loop to fill four cards with items 1-4 of the array (item zero is the main card)
+    if (response.drinks.length > 4) {
+        for (var i = 1; i < 5; i++) {
+            var cardID = "card-" + i;
+            $("#" + cardID).find("img").attr("src", response.drinks[i].strDrinkThumb);
+            $("#" + cardID).find(".card-title").text(response.drinks[i].strDrink);
+            $("#" + cardID).find("p").text(response.drinks[i].strCategory);
+        }
+    }
+    // if there are less than 5 items in the array, fill the remaining cards with random content.
+    else {
+        for (var i = 1; i < response.drinks.length; i++) {
+            var cardID = "card-" + i;
+            console.log("card: " + cardID);
+            $("#" + cardID).find("img").attr("src", response.drinks[i].strDrinkThumb);
+            $("#" + cardID).find(".card-title").text(response.drinks[i].strDrink);
+            $("#" + cardID).find(".card-content").text(response.drinks[i].strCategory);
+        }
+        
+        for (var i = 5; i > response.drinks.length; i--) {
+            let cardID = "card-" + (i-1); // if we use var the for loop will finish before the first ajax call comes back, so all the ajax calls will use card-1. "let" prevents this.
+            console.log("random cardID: " +cardID);
+            var randomURL = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
+            $.getJSON(randomURL, function (randomCock) {
+                console.log("random: " + randomCock);
+                console.log("card: " + cardID);
+                $("#" + cardID).find("img").attr("src", randomCock.drinks[0].strDrinkThumb);
+                $("#" + cardID).find(".card-title").text(randomCock.drinks[0].strDrink);
+                $("#" + cardID).find(".card-content").text(randomCock.drinks[0].strCategory);
+            });
 
+        }
+    }
+
+
+
+
+}
 // var listOfIngredients = [];
 // if(response.drinks[0].strIngredient1 != null){
 //     listOfIngredients.push(response.drinks[0].strIngredient1);
