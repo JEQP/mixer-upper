@@ -1,4 +1,5 @@
 //    Global Variables
+
 var cockName = "string";
 
 // Searching for margarita returns an array of five drinks with margarita in the title.
@@ -20,7 +21,9 @@ $(document).ready(function () {
     // replaces spaces in name with underscore
 
     $("#searchButton").click(function () {
-
+$(".textHide").hide();
+$(".infoContainer").show();
+$(".blueLagoon").hide();
         cockName = $("#first_name").val();
         console.log("cockname: " + cockName);
         cockName = cockName.replace(/\s/g, "_");
@@ -47,14 +50,21 @@ function getCocktail() {
     console.log("URL: " + cocktailURL);
 
     $.getJSON(cocktailURL, function (response) {
+        if (response.drinks===null){
+            // alert("drink not found");
+            M.toast({html: "<div class='message'>I am not a drink</div>"}) 
+        }
         console.log(response);
         // check if more than one cocktail returned
-        if (response.drinks.length == 1) {
+        // if (response.drinks.length == 1) {
             //display the coctail detail page
             // display the image
-            $("#dick-pic").attr("src", response.drinks[0].strDrinkThumb);
+            $(".cocktailThumb").attr("src", response.drinks[0].strDrinkThumb);
             // display the instructions
             $("#strInstructions").html(response.drinks[0].strInstructions);
+
+            $("#strDrink").text(response.drinks[0].strDrink);
+
             // display the ingredients as a list, with the measures beside them
             if (response.drinks[0].strIngredient1 !== null) {
                 $("#strIngredients").append("<li>" + response.drinks[0].strIngredient1 + " " + response.drinks[0].strMeasure1);
@@ -103,28 +113,28 @@ function getCocktail() {
             }
 
 
-        }
-        else if (response.drinks.length > 1) {
+        // }
+        // else if (response.drinks.length > 1) {
             // display the cocktail option page
             // link through a loop for the number of cocktails we wish to display. This may require an adaption of the HTML document
 
-            for (var i = 0; i < response.drinks.length; i++) {
-                //create card or container or whatever. Append attributes to this container.
-                $("#Relevant_ID").append("<h3>" + response.drinks[i].strDrink + "</h3>");
-                $("#Relevant_ID").append("<img src='" + response.drinks[i].strDrinkThumb)
-            }
+            // for (var i = 0; i < response.drinks.length; i++) {
+            //     //create card or container or whatever. Append attributes to this container.
+            //     $("#Relevant_ID").append("<h3>" + response.drinks[i].strDrink + "</h3>");
+            //     $("#Relevant_ID").append("<img src='" + response.drinks[i].strDrinkThumb)
+            // }
 
 
-        }
-        else {
-            // display the no cocktails found page
-        }
+        // }
+        // else {
+        //     // display the no cocktails found page
+        // }
 
 
 
-        var output = document.createElement("p");
-        $(output).html(response.drinks[0].strDrink);
-        $("body").append(output);
+        // var output = document.createElement("p");
+        // $(output).html(response.drinks[0].strDrink);
+        // $("body").append(output);
 
         console.log("name: " + response.drinks[0].strDrink); //name of cocktail
         console.log("Instructions: " + response.drinks[0].strInstructions); // instructions

@@ -3,6 +3,9 @@
         width: 100vw;
         height: 200px;
     }
+    .infoContainer{
+        display: none;
+    }
     
     .headerText {
         color: #001a33;
@@ -17,9 +20,35 @@
         position: relative;
         margin-bottom: 20px;
     }
+    #toast-container {
+        top: 5% !important;
+        left: 50% !important;
+        margin-left: -78px;
+        margin-top: -24px;
+        
+    }
+    @media (max-width: 600px) {
+        #toast-container {
+        left: 0% !important;
+        margin: 0px;
+        margin-top: -20px;
+        text-align: center;
+      
+
+        }
+        .toast .message{
+            margin: auto;
+        }
+    }
     
     .searchRow {
         padding-top: 15px;
+    }
+
+    .centered {
+        text-align: center;
+        content: center;
+        background-color: purple;
     }
     
     #strDrink {
