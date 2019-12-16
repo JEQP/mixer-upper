@@ -1,0 +1,302 @@
+/* Custom Stylesheet */
+
+
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+
+/* header {
+  background-color: #4900c7;
+  text-align: center;
+  height: 100px;
+
+} */
+
+* {
+    box-sizing: border-box;
+    border-radius: 0 !important;
+}
+
+.headerText {
+    padding-top: 15px;
+    margin: 0px;
+    text-align: center;
+    color: white;
+    z-index: -100;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.searchRow {
+    padding-top: 15px;
+    margin: 0px;
+    text-align: center;
+    color: grey;
+    z-index: -100;
+    font-family: 'Montserrat', sans-serif;
+    padding-left: 250px
+}
+
+.headerImg {
+    width: 100%;
+    width: 100vw;
+    height: 200px;
+    z-index: -200;
+}
+
+.fullwidth {
+    width: 100%;
+    width: 100vw;
+    z-index: -200;
+}
+
+.rightstuff {
+    z-index: 100;
+}
+
+.cardCol {
+    text-align: center;
+}
+
+.cardContainer {
+    text-align: center;
+}
+
+.myLogo {
+    text-align: center;
+    width: 100px;
+}
+
+.myNavWrapper {
+    text-align: center;
+}
+
+.firstRow,
+.secondRow {
+    text-align: center;
+    /* margin: 50px; */
+    /* padding-left: 150px; */
+    margin-top: -250px;
+}
+
+.searchInput {
+    position: center;
+    margin-top: 100px;
+}
+
+
+/* #searchButton {
+    text-align: center !important;
+    position: relative;
+    /* transform: translatex(650%); */
+
+
+/* margin-top: -85px; */
+
+
+/* margin-left: 400px; */
+
+.blueLagoon {
+    display: inline-block;
+    vertical-align: top;
+    width: 30%;
+    z-index: 100;
+    margin-top: -250px;
+    margin-left: -50px;
+}
+
+.MixerUpperContent {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-right: 100px;
+    text-align: right;
+    margin-top: 0px;
+    margin-right: -200px;
+    margin-bottom: 0px;
+    margin-left: -80px;
+    width: 100%;
+    background-color: #4900c7;
+    z-index: -100;
+}
+
+
+/* .mart {
+    width: 200px;
+    float: center;
+} */
+
+.topRow {
+    text-align: center;
+}
+
+.topCard {
+    text-align: center;
+    padding-right: 25px;
+}
+
+@media (max-width: 599px) {
+    .topCard {
+        text-align: center !important;
+        transform: translatex(35%);
+        width: 80%;
+        padding-right: 50px !important;
+        padding-left: 30px !important;
+        /* margin-left: 80px !important; */
+    }
+    .firstRow {
+        text-align: center !important;
+        margin-top: -366px;
+    }
+    .secondRow {
+        text-align: center !important;
+    }
+    .cardContainer {
+        text-align: center !important;
+    }
+    .searchRow {
+        padding-left: 205px;
+    }
+    .blueLagoon {
+        width: 30%;
+        margin-top: -202px;
+        margin-left: 5px !important;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 992px) {
+    .topCard {
+        text-align: center !important;
+        transform: translatex(75%);
+        padding-right: 30px !important;
+        /* margin-left: 80px !important; */
+    }
+    .firstRow {
+        text-align: center !important;
+        margin-top: -366px;
+    }
+    .secondRow {
+        text-align: center !important;
+    }
+    .cardContainer {
+        text-align: center !important;
+    }
+    .searchRow {
+        padding-left: 205px;
+    }
+    .blueLagoon {
+        width: 30%;
+        margin-top: -300px;
+        margin-left: 5px !important;
+    }
+    h1 {
+        margin-left: 150px !important;
+    }
+    .searchRow {
+        padding-left: 355px;
+    }
+}
+
+@media (min-width: 993px) and (max-width: 1072px) {
+    .topCard {
+        text-align: center !important;
+        transform: translatex(65%);
+        padding-right: 30px !important;
+        padding-left: 50px !important;
+        /* margin-left: 80px !important; */
+    }
+    .firstRow {
+        text-align: center !important;
+        margin-top: -366px;
+    }
+    .secondRow {
+        text-align: center !important;
+    }
+    .cardContainer {
+        text-align: center !important;
+    }
+    .searchRow {
+        padding-left: 505px;
+    }
+    .blueLagoon {
+        width: 30%;
+        margin-top: -300px;
+        margin-left: 5px !important;
+    }
+    h1 {
+        margin-left: 150px !important;
+    }
+    .searchInput {
+        text-align: center !important;
+        margin-top: -50px !important;
+    }
+}
+
+@media (min-width: 1073px) and (max-width: 1400px) {
+    .topCard {
+        text-align: center !important;
+        transform: translatex(95%);
+    }
+    .firstRow {
+        text-align: center !important;
+        margin-top: -366px;
+    }
+    .secondRow {
+        text-align: center !important;
+    }
+    .cardContainer {
+        text-align: center !important;
+    }
+    .searchRow {
+        text-align: center !important;
+        padding-left: 505px;
+    }
+    .blueLagoon {
+        width: 30%;
+        margin-top: -300px;
+        margin-left: 5px !important;
+    }
+    h1 {
+        margin-left: 150px !important;
+    }
+    .searchInput {
+        text-align: center !important;
+        margin-top: -10px !important;
+    }
+}
+
+@media (min-width: 1401px) and (max-width: 3000px) {
+    .topCard {
+        text-align: center !important;
+        transform: translatex(95%);
+        /* margin-left: 80px !important; */
+    }
+    .firstRow {
+        text-align: center !important;
+        margin-top: -366px;
+    }
+    .secondRow {
+        text-align: center !important;
+    }
+    .cardContainer {
+        text-align: center !important;
+    }
+    .searchRow {
+        padding-left: 805px;
+        text-align: center !important;
+    }
+    .blueLagoon {
+        width: 25%;
+        margin-top: -300px;
+        margin-left: -100px !important;
+    }
+    h1 {
+        margin-left: 150px !important;
+    }
+    .searchInput {
+        text-align: center !important;
+        margin-top: -10px !important;
+    }
+}
