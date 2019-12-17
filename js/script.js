@@ -21,9 +21,9 @@ $(document).ready(function () {
     // replaces spaces in name with underscore
 
     $("#searchButton").click(function () {
-$(".textHide").hide();
-$(".infoContainer").show();
-$(".blueLagoon").hide();
+        $(".textHide").hide();
+        $(".infoContainer").show();
+        $(".blueLagoon").hide();
         cockName = $("#first_name").val();
         console.log("cockname: " + cockName);
         cockName = cockName.replace(/\s/g, "_");
@@ -50,91 +50,69 @@ function getCocktail() {
     console.log("URL: " + cocktailURL);
 
     $.getJSON(cocktailURL, function (response) {
-        if (response.drinks===null){
+        if (response.drinks === null) {
             // alert("drink not found");
-            M.toast({html: "<div class='message'>I am not a drink</div>"}) 
+            M.toast({ html: "<div class='message'>I am not a drink</div>" })
         }
         console.log(response);
-        // check if more than one cocktail returned
-        // if (response.drinks.length == 1) {
-            //display the coctail detail page
-            // display the image
-            $(".cocktailThumb").attr("src", response.drinks[0].strDrinkThumb);
-            // display the instructions
-            $("#strInstructions").html(response.drinks[0].strInstructions);
 
-            $("#strDrink").text(response.drinks[0].strDrink);
+        //display the coctail detail page
+        // display the image
+        $(".cocktailThumb").attr("src", response.drinks[0].strDrinkThumb);
+        // display the instructions
+        $("#strInstructions").html(response.drinks[0].strInstructions);
 
-            // display the ingredients as a list, with the measures beside them
-            if (response.drinks[0].strIngredient1 !== null) {
-                $("#strIngredients").append("<li>" + response.drinks[0].strIngredient1 + " " + response.drinks[0].strMeasure1);
-            }
-            if (response.drinks[0].strIngredient2 !== null) {
-                $("#strIngredients").append("<li>" + response.drinks[0].strIngredient2 + " " + response.drinks[0].strMeasure2);
-            }
-            if (response.drinks[0].strIngredient3 !== null) {
-                $("#strIngredients").append("<li>" + response.drinks[0].strIngredient3 + " " + response.drinks[0].strMeasure3);
-            }
-            if (response.drinks[0].strIngredient4 !== null) {
-                $("#strIngredients").append("<li>" + response.drinks[0].strIngredient4 + " " + response.drinks[0].strMeasure4);
-            }
-            if (response.drinks[0].strIngredient5 !== null) {
-                $("#strIngredients").append("<li>" + response.drinks[0].strIngredient5 + " " + response.drinks[0].strMeasure5);
-            }
-            if (response.drinks[0].strIngredient6 !== null) {
-                $("#strIngredients").append("<li>" + response.drinks[0].strIngredient6 + " " + response.drinks[0].strMeasure6);
-            }
-            if (response.drinks[0].strIngredient7 !== null) {
-                $("#strIngredients").append("<li>" + response.drinks[0].strIngredient7 + " " + response.drinks[0].strMeasure7);
-            }
-            if (response.drinks[0].strIngredient8 !== null) {
-                $("#strIngredients").append("<li>" + response.drinks[0].strIngredient8 + " " + response.drinks[0].strMeasure8);
-            }
-            if (response.drinks[0].strIngredient9 !== null) {
-                $("#strIngredients").append("<li>" + response.drinks[0].strIngredient9 + " " + response.drinks[0].strMeasure9);
-            }
-            if (response.drinks[0].strIngredient10 !== null) {
-                $("#strIngredients").append("<li>" + response.drinks[0].strIngredient10 + " " + response.drinks[0].strMeasure10);
-            }
-            if (response.drinks[0].strIngredient11 !== null) {
-                $("#strIngredients").append("<li>" + response.drinks[0].strIngredient11 + " " + response.drinks[0].strMeasure11);
-            }
-            if (response.drinks[0].strIngredient12 !== null) {
-                $("#strIngredients").append("<li>" + response.drinks[0].strIngredient12 + " " + response.drinks[0].strMeasure12);
-            }
-            if (response.drinks[0].strIngredient13 !== null) {
-                $("#strIngredients").append("<li>" + response.drinks[0].strIngredient13 + " " + response.drinks[0].strMeasure13);
-            }
-            if (response.drinks[0].strIngredient14 !== null) {
-                $("#strIngredients").append("<li>" + response.drinks[0].strIngredient14 + " " + response.drinks[0].strMeasure14);
-            }
-            if (response.drinks[0].strIngredient15 !== null) {
-                $("#strIngredients").append("<li>" + response.drinks[0].strIngredient15 + " " + response.drinks[0].strMeasure15);
-            }
-
-
-        // }
-        // else if (response.drinks.length > 1) {
-            // display the cocktail option page
-            // link through a loop for the number of cocktails we wish to display. This may require an adaption of the HTML document
-
-            // for (var i = 0; i < response.drinks.length; i++) {
-            //     //create card or container or whatever. Append attributes to this container.
-            //     $("#Relevant_ID").append("<h3>" + response.drinks[i].strDrink + "</h3>");
-            //     $("#Relevant_ID").append("<img src='" + response.drinks[i].strDrinkThumb)
-            // }
+        $("#strDrink").text(response.drinks[0].strDrink);
+        // clear the ingredients list
+        $("#strIngredients").html("");
+        // display the ingredients as a list, with the measures beside them
+        if (response.drinks[0].strIngredient1 !== null) {
+            $("#strIngredients").append("<li>" + response.drinks[0].strIngredient1 + " " + response.drinks[0].strMeasure1);
+        }
+        if (response.drinks[0].strIngredient2 !== null) {
+            $("#strIngredients").append("<li>" + response.drinks[0].strIngredient2 + " " + response.drinks[0].strMeasure2);
+        }
+        if (response.drinks[0].strIngredient3 !== null) {
+            $("#strIngredients").append("<li>" + response.drinks[0].strIngredient3 + " " + response.drinks[0].strMeasure3);
+        }
+        if (response.drinks[0].strIngredient4 !== null) {
+            $("#strIngredients").append("<li>" + response.drinks[0].strIngredient4 + " " + response.drinks[0].strMeasure4);
+        }
+        if (response.drinks[0].strIngredient5 !== null) {
+            $("#strIngredients").append("<li>" + response.drinks[0].strIngredient5 + " " + response.drinks[0].strMeasure5);
+        }
+        if (response.drinks[0].strIngredient6 !== null) {
+            $("#strIngredients").append("<li>" + response.drinks[0].strIngredient6 + " " + response.drinks[0].strMeasure6);
+        }
+        if (response.drinks[0].strIngredient7 !== null) {
+            $("#strIngredients").append("<li>" + response.drinks[0].strIngredient7 + " " + response.drinks[0].strMeasure7);
+        }
+        if (response.drinks[0].strIngredient8 !== null) {
+            $("#strIngredients").append("<li>" + response.drinks[0].strIngredient8 + " " + response.drinks[0].strMeasure8);
+        }
+        if (response.drinks[0].strIngredient9 !== null) {
+            $("#strIngredients").append("<li>" + response.drinks[0].strIngredient9 + " " + response.drinks[0].strMeasure9);
+        }
+        if (response.drinks[0].strIngredient10 !== null) {
+            $("#strIngredients").append("<li>" + response.drinks[0].strIngredient10 + " " + response.drinks[0].strMeasure10);
+        }
+        if (response.drinks[0].strIngredient11 !== null) {
+            $("#strIngredients").append("<li>" + response.drinks[0].strIngredient11 + " " + response.drinks[0].strMeasure11);
+        }
+        if (response.drinks[0].strIngredient12 !== null) {
+            $("#strIngredients").append("<li>" + response.drinks[0].strIngredient12 + " " + response.drinks[0].strMeasure12);
+        }
+        if (response.drinks[0].strIngredient13 !== null) {
+            $("#strIngredients").append("<li>" + response.drinks[0].strIngredient13 + " " + response.drinks[0].strMeasure13);
+        }
+        if (response.drinks[0].strIngredient14 !== null) {
+            $("#strIngredients").append("<li>" + response.drinks[0].strIngredient14 + " " + response.drinks[0].strMeasure14);
+        }
+        if (response.drinks[0].strIngredient15 !== null) {
+            $("#strIngredients").append("<li>" + response.drinks[0].strIngredient15 + " " + response.drinks[0].strMeasure15);
+        }
 
 
-        // }
-        // else {
-        //     // display the no cocktails found page
-        // }
-
-
-
-        // var output = document.createElement("p");
-        // $(output).html(response.drinks[0].strDrink);
-        // $("body").append(output);
 
         console.log("name: " + response.drinks[0].strDrink); //name of cocktail
         console.log("Instructions: " + response.drinks[0].strInstructions); // instructions
@@ -172,6 +150,8 @@ function fillCards(response) {
             $("#" + cardID).find("img").attr("src", response.drinks[i].strDrinkThumb);
             $("#" + cardID).find(".card-title").text(response.drinks[i].strDrink);
             $("#" + cardID).find("p").text(response.drinks[i].strCategory);
+            $("#" + cardID).find(".card-action").attr("href", "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + response.drinks[i].strDrink);
+                console.log("url: " + $("#" + cardID).find(".card-action").attr("href"));
         }
     }
     // if there are less than 5 items in the array, fill the remaining cards with random content.
@@ -182,11 +162,13 @@ function fillCards(response) {
             $("#" + cardID).find("img").attr("src", response.drinks[i].strDrinkThumb);
             $("#" + cardID).find(".card-title").text(response.drinks[i].strDrink);
             $("#" + cardID).find(".card-content").text(response.drinks[i].strCategory);
+            $("#" + cardID).find(".card-action").attr("href", "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + response.drinks[i].strDrink);
+                console.log("url: " + $("#" + cardID).find(".card-action").attr("href"));
         }
-        
+
         for (var i = 5; i > response.drinks.length; i--) {
-            let cardID = "card-" + (i-1); // if we use var the for loop will finish before the first ajax call comes back, so all the ajax calls will use card-1. "let" prevents this.
-            console.log("random cardID: " +cardID);
+            let cardID = "card-" + (i - 1); // if we use var the for loop will finish before the first ajax call comes back, so all the ajax calls will use card-1. "let" prevents this.
+            console.log("random cardID: " + cardID);
             var randomURL = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
             $.getJSON(randomURL, function (randomCock) {
                 console.log("random: " + randomCock);
@@ -194,6 +176,8 @@ function fillCards(response) {
                 $("#" + cardID).find("img").attr("src", randomCock.drinks[0].strDrinkThumb);
                 $("#" + cardID).find(".card-title").text(randomCock.drinks[0].strDrink);
                 $("#" + cardID).find(".card-content").text(randomCock.drinks[0].strCategory);
+                $("#" + cardID).find(".card-action").attr("href", "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + randomCock.drinks[0].strDrink);
+                console.log("url: " + $("#" + cardID).find(".card-action").attr("href"));
             });
 
         }
@@ -203,26 +187,7 @@ function fillCards(response) {
 
 
 }
-// var listOfIngredients = [];
-// if(response.drinks[0].strIngredient1 != null){
-//     listOfIngredients.push(response.drinks[0].strIngredient1);
-// }
-// if(response.drinks[0].strIngredient2 != null){
-//     listOfIngredients.push(response.drinks[0].strIngredient2);
-// }
-// if(response.drinks[0].strIngredient3 != null){
-//     listOfIngredients.push(response.drinks[0].strIngredient3);
-// }
-// if(response.drinks[0].strIngredient4 != null){
-//     listOfIngredients.push(response.drinks[0].strIngredient4);
-// }
-// if(response.drinks[0].strIngredient5 != null){
-//     listOfIngredients.push(response.drinks[0].strIngredient5);
-// }
-// if(response.drinks[0].strIngredient6 != null){
-//     listOfIngredients.push(response.drinks[0].strIngredient6);
-// }
-// console.log(listOfIngredients);
+
 
 
 
@@ -296,6 +261,22 @@ $("#startButton").click(function (event) {
     getIngredSuggestions()
 
 });
+
+
+// Clicking Links in Cards
+
+$(".card-action").click(function (event) {
+    event.stopPropagation();
+
+
+    console.log("url: " + $(this).parent().find(".card-action").attr("href"));
+    cockName =  $(this).parent().find(".card-action").attr("href");
+    console.log("link clicked: " + cockName);
+
+})
+// Do delegation to get ID
+// change cockName to the name on the card (do we want to store cocktail IDs at this point?)
+// call getCocktail()
 
 
 // creating ingredients list
