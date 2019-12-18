@@ -280,6 +280,9 @@ $(".card-image").click(function(event){
     event.stopPropagation();
     cockName = $(this).find(".card-title").text();
     console.log("click title: " + $(this).find(".card-title").text());
+    $(".textHide").hide();
+    $(".infoContainer").show();
+    $(".blueLagoon").hide();
     getCocktail();
 })
 
