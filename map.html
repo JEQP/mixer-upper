@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <title>Starter Template - Materialize</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+
+<body>
+    <div class="row" style="margin-bottom: 0px">
+        <div class="col s2" style="position: absolute;">
+            <div class="card blueLagoon">
+                <div class="card-image">
+                    <img src="./images/bluelagoon.jpg" class="blueLagoonImage">
+                    <span class="card-title"></span>
+                </div>
+                <div class="card-content">
+                    <p>Blue Lagoons are a delicious combination of Bicardi, blue curacao, and lemonade.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <header style="width:100%" class="center-align">
+        <div class="fullwidth">
+            <img src="./images/header-image-lagoon.jpg" class="headerImg">
+        </div>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <div class="row myHeader">
+            <div class="col s8 offset-s1 headerText">
+                Mixer Upper
+            </div>
+            <div class="col s3 social">
+                <!-- home icon -->
+                <a href="index.html"><i class="fa fa-home"></i></a>
+
+                <!-- map icon -->
+                <a href="map.html"><i class="fa fa-map"></i></a>
+
+                <!-- twitter icon -->
+                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw&text=This%20is%20text&url=https://jeqp.github.io/mixer-upper/"
+                    class="fa fa-twitter" data-show-count="false" onclick="window.open('https://twitter.com/share?ref_src=twsrc%5Etfw&text=Impress%20your%20friends%20with%20the%20latest%20and%20greatest%20cocktail%20recipes!%20Any%20cocktail%20you%20can%20think%20of,%20and%20we%20will%20show%20you%20how%20to%20make%20it!&url=https://jeqp.github.io/mixer-upper/', 
+            'newwindow', 
+            'width=900,height=250'); return false;"></a>
+                <!-- facebook icon -->
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://jeqp.github.io/mixer-upper/&amp;src=sdkpreparse"
+                    class="fa fa-facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://jeqp.github.io/mixer-upper/&amp;src=sdkpreparse', 
+            'newwindow', 
+            'width=900,height=400'); return false;"></a>
+
+
+            </div>
+        </div>
+    </header>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col offset-s1 s8"> 
+                <h5>Find a cocktail bar near you.</h5>
+                <div id="googleMap" style="width:1000px;height:600px"></div>
+            </div>
+        </div>
+    </div> 
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApwVI5uV_mtWrnlZoY-whSUb8FISb3iQQ&callback=myMap&libraries=places"></script>
+    <script src="./js/map.js"></script>
+</body>
+
+</html>
