@@ -30,6 +30,20 @@ $(document).ready(function () {
         console.log("No space: " + cockName);
         getCocktail();
     });
+    for (var i = 5; i > 0; i--) {
+        let cardID = "card-" + (i - 1); // if we use var the for loop will finish before the first ajax call comes back, so all the ajax calls will use card-1. "let" prevents this.
+        console.log("random cardID: " + cardID);
+        var randomURL = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
+        $.getJSON(randomURL, function (randomCock) {
+            console.log("random: " + randomCock);
+            console.log("card: " + cardID);
+            $("#" + cardID).find("img").attr("src", randomCock.drinks[0].strDrinkThumb);
+            $("#" + cardID).find(".card-title").text(randomCock.drinks[0].strDrink);
+            $("#" + cardID).find(".card-content").text(randomCock.drinks[0].strCategory);
+            $("#" + cardID).find(".card-action").attr("href", "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + randomCock.drinks[0].strDrink);
+            console.log("url: " + $("#" + cardID).find(".card-action").attr("href"));
+        });
+    }
 });
 
 $("#first_name").on('keyup', function (event) {
@@ -126,16 +140,13 @@ function getCocktail() {
 // get cocktails by ingredient
 // this gives an array of cocktails with name, image and cocktail ID. They can be displayed, and linked through to the actual cocktail. 
 
-function getIngredSuggestions() {
-    var ingredURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin";
+function getIngredSuggestions(ingredName) {
+    var ingredURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + ingredName;
 
     $.getJSON(ingredURL, function (response) {
         console.log(response);
-        // var output = document.createElement("img");
-        // for (var i = 0; i < response.drinks.length; i++) {
-        //     $(output).html(response.drinks[i].strDrinkThumb);
-        //     $("body").append(output);
-        // }
+        fillCards(response);
+
     });
 }
 
@@ -265,15 +276,23 @@ $("#startButton").click(function (event) {
 
 // Clicking Links in Cards
 
-$(".card-action").click(function (event) {
+$(".card-image").click(function(event){
     event.stopPropagation();
-
-
-    console.log("url: " + $(this).parent().find(".card-action").attr("href"));
-    cockName =  $(this).parent().find(".card-action").attr("href");
-    console.log("link clicked: " + cockName);
-
+    cockName = $(this).find(".card-title").text();
+    console.log("click title: " + $(this).find(".card-title").text());
+    getCocktail();
 })
+
+
+// $(".card-action").click(function (event) {
+//     event.stopPropagation();
+
+
+//     console.log("url: " + $(this).parent().find(".card-action").attr("href"));
+//     cockName =  $(this).parent().find(".card-action").attr("href");
+//     console.log("link clicked: " + cockName);
+
+// })
 // Do delegation to get ID
 // change cockName to the name on the card (do we want to store cocktail IDs at this point?)
 // call getCocktail()
