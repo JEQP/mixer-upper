@@ -10,36 +10,19 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/map.css">
 </head>
 
 <body>
-    <div class="row" style="margin-bottom: 0px">
-        <div class="col s2" style="position: absolute;">
-            <div class="card blueLagoon">
-                <div class="card-image">
-                    <img src="./images/bluelagoon.jpg" class="blueLagoonImage">
-                    <span class="card-title"></span>
-                </div>
-                <div class="card-content">
-                    <p>Blue Lagoons are a delicious combination of Bicardi, blue curacao, and lemonade.</p>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <header style="width:100%" class="center-align">
-        <div class="fullwidth">
-            <img src="./images/header-image-lagoon.jpg" class="headerImg">
-        </div>
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-        <div class="row myHeader">
-            <div class="col s8 offset-s1 headerText">
+    <header>
+        <div class="row" style="height: 200px">
+            <!-- offset-l1 is for moving text "Mixer Upper" to right so that Blue Lagoons does not hide it. -->
+            <div class="col s12 m12 offset-l1 l7 headerText center-align">
                 Mixer Upper
             </div>
-            <div class="col s3 social">
+            <div class="col s12 m12 l4 social right-align">
                 <!-- home icon -->
                 <a href="index.html"><i class="fa fa-home"></i></a>
 
@@ -57,24 +40,30 @@
             'newwindow', 
             'width=900,height=400'); return false;"></a>
 
-
             </div>
         </div>
-    </header>
+    </header> 
 
+    <div class="row" style="margin-left: 20px">
+        <h5>Find a cocktail bar near you. Click an icon for more information.</h5>
+    </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col offset-s1 s8"> 
-                <h5>Find a cocktail bar near you.</h5>
-                <div id="googleMap" style="width:1000px;height:600px"></div>
-            </div>
+    <div class="row">
+        <div class="col m7 s12">
+            <!-- <div style="width:1000px;height:600px; background-color: lightgrey;"></div> -->
+            <div id="googleMap" style="width:100%;height:600px"></div>
         </div>
-    </div> 
+        <div class="col m5 s12 maplist" style="height:600px;">
+            <ul id="barlist" class="collapsible" style="width: 100%;">
+            </ul>
+        </div>
+    </div>
 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApwVI5uV_mtWrnlZoY-whSUb8FISb3iQQ&callback=myMap&libraries=places"></script>
     <script src="./js/map.js"></script>
+    <script src="./js/materialize.min.js"></script>
 </body>
 
 </html>

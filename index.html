@@ -9,6 +9,7 @@
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
@@ -29,18 +30,13 @@
         </div>
     </div>
 
-    <header style="width:100%" class="center-align">
-        <div class="fullwidth">
-            <img src="./images/header-image-lagoon.jpg" class="headerImg">
-        </div>
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-        <div class="row myHeader">
-            <div class="col s8 offset-s1 headerText">
+    <header>
+        <div class="row" style="height: 200px">
+            <!-- offset-l1 is for moving text "Mixer Upper" to right so that Blue Lagoons does not hide it. -->
+            <div class="col s12 m12 offset-l1 l7 headerText center-align">
                 Mixer Upper
             </div>
-            <div class="col s3 social">
+            <div class="col s12 m12 l4 social right-align">
                 <!-- home icon -->
                 <a href="index.html"><i class="fa fa-home"></i></a>
 
@@ -58,36 +54,34 @@
             'newwindow', 
             'width=900,height=400'); return false;"></a>
 
-
             </div>
         </div>
+    </header> 
 
-
-
-        <div class="row searchRow">
-            <div class="input-field col s6 offset-s3 searchInput center-align">
-                <input id="first_name" type="text">
-                <label class="active" for="first_name">Search favourite cocktail</label>
-                <div class="myButton col l12 m12 s12">
-                    <button class="btn waves-effect waves-light" id="searchButton" type="submit" name="action">Search
-                        <i class="material-icons right">send</i> </button>
-
-                </div>
-
+    <div class="row searchRow">
+        <div class="input-field col s6 offset-s3 searchInput center-align">
+            <input id="first_name" type="text">
+            <label class="active" for="first_name">Search favourite cocktail</label>
+            <div class="myButton col l12 m12 s12">
+                <button class="btn waves-effect waves-light" id="searchButton" type="submit" name="action">Search
+                    <i class="material-icons right">send</i> </button>
 
             </div>
 
+
         </div>
-        <div class="row">
-            <div class="col s6 offset-s3">
-                
-                <h5 class="textHide">
-                    Impress your friends with the latest and greatest cocktail recipes! Any cocktail you can think of,
-                    and we will show you how to make it!
-                </h5>
-            </div>
+
+    </div>
+    <div class="row">
+        <div class="col s6 offset-s3">
+            
+            <h5 class="textHide">
+                Impress your friends with the latest and greatest cocktail recipes! Any cocktail you can think of,
+                and we will show you how to make it!
+            </h5>
         </div>
-    </header>
+    </div>
+
     <div class="container infoContainer">
         <h1>
             <div class="text-2" id="strDrink">Margarita</div>
