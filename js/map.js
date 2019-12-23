@@ -1,5 +1,17 @@
 getMyPosition();
 
+// Location of Sydney Uni 
+//myMap(-33.890896, 151.191071);
+
+
+$(document).ready(function() {
+    console.log("document ready");
+    //getMyPosition();
+    $('.collapsible').collapsible({
+        onOpenStart: showDetailsInList
+    });
+})
+
 var map;
 var service;
 function myMap(lat, lon) {
@@ -27,8 +39,65 @@ function callbackNearbySearch(results, status) {
     } else {
         console.log("results: ", results);
         createMarkers(results);
+        createList(results);
     }
 }
+
+
+function createList(places) { 
+    for (var i = 0; i<places.length; i++) {
+        //console.log(places[i]);
+        var name = places[i].name;
+        var reference = places[i].reference;
+        var vicinity = places[i].vicinity;
+        var price_level = places[i].price_level;
+        var price_level_symbol = "";
+        var rating = places[i].rating;
+        var user_ratings_total =  places[i].user_ratings_total;
+        // Create $$$ representation of price_level
+        if (price_level !== "undefined"){
+            for (var j=0; j<price_level; j++){
+                price_level_symbol = price_level_symbol +"$";
+            }
+            price_level_symbol = "- " + price_level_symbol;
+        }
+
+        var listItem = (i+1) + ". " + name + ", " + vicinity + ", Rating: " + rating + " (" + user_ratings_total + ") " + price_level_symbol;
+        // console.log(listItem);
+        var loadingStr = "Loading..."
+
+        var li = $("<li>");
+        var div = $("<div class='collapsible-header'>");
+        $("#barlist").append(li);
+        $("#barlist li:last").append(div);
+        $("#barlist li:last div").text(listItem);
+     
+        var div2 =$("<div class='collapsible-body'>");
+        $("#barlist li:last").append(div2);
+        $("#barlist li:last div:last").text(loadingStr);
+        $("#barlist li:last div:last").attr('id', i+'-cbody');
+        $("#barlist li:last div:last").attr('reference', reference);
+    }
+}
+
+function showDetailsInList(element){
+    console.log("collapse onOpen was fired!");
+    // console.log(element);
+    var collapsibleBody = $(element).find('.collapsible-body');
+    var referenceVal = collapsibleBody.attr("reference");
+    console.log("reference: ", referenceVal);
+    var id = collapsibleBody.attr("id");
+    console.log(id);
+    var request = { reference: referenceVal };
+    service.getDetails(request, function (place, status) {
+        console.log("callbackGetDetails(place: " , place);
+        contentString = place.formatted_phone_number + "<br> " + place.formatted_address + "<br>";
+        console.log(contentString);
+        $("#" + id).html(contentString);
+    })
+
+}
+
 
 function createMarkers(places) {
     var bounds = new google.maps.LatLngBounds();
