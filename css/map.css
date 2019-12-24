@@ -1,5 +1,14 @@
+#googleMap { 
+    width:100%; 
+    height:600px;
+    background-color: lightgrey;
+}
+
+
+
 @media (min-width: 992px) {
-    .maplist {
+    #barlist {
+        height:600px;
         overflow: auto;
     }
 }
