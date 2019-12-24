@@ -1,7 +1,13 @@
 getMyPosition();
 
+// Location of Sydney Uni 
+// myMap(-33.890896, 151.191071);
+
 var map;
 var service;
+var currentInfoWindow = null;
+var markerArr = [];
+
 function myMap(lat, lon) {
     console.log(lat, lon);
     var currentPosition = new google.maps.LatLng(lat, lon);
@@ -25,14 +31,125 @@ function callbackNearbySearch(results, status) {
     if (status != google.maps.places.PlacesServiceStatus.OK) {
         return;
     } else {
-        console.log("results: ", results);
+        // console.log("results: ", results);
         createMarkers(results);
+        createList(results);
     }
 }
 
+
+function createList(places) { 
+    for (var i = 0; i<places.length; i++) {
+        //console.log(places[i]);
+        var name = places[i].name;
+        var reference = places[i].reference;
+        var vicinity = places[i].vicinity;
+        var price_level = places[i].price_level;
+        var price_level_symbol = "";
+        var rating = places[i].rating;
+        var user_ratings_total =  places[i].user_ratings_total;
+        var user_rating_symbol = "";
+        // Create $$$ representation of price_level
+        if (price_level !== "undefined"){
+            for (var j=0; j<price_level; j++){
+                price_level_symbol = price_level_symbol +"$";
+            }
+            price_level_symbol = "- " + price_level_symbol;
+        }
+
+        // Create star symbol
+        if (rating !== "undefined"){
+            for (var k=0; k <= rating-1; k++){
+                user_rating_symbol= user_rating_symbol + "★";
+            }
+        }
+
+        var listItem = (i+1) + ". " + name +  
+        ", Rating: " + rating + " " + user_rating_symbol + " (" + user_ratings_total + ") " + price_level_symbol;
+        // console.log(listItem);
+        var loadingStr = "Loading..."
+
+        var ul = $("<ul>");
+        $("#barlist").append(ul);
+        $("#barlist ul").addClass("collapsible");
+        $("#barlist ul").attr("style", "width: 100%;");
+ 
+        var li = $("<li>");
+        var div = $("<div class='collapsible-header'>");
+        $("#barlist ul").append(li);
+        $("#barlist ul li:last").append(div);
+        $("#barlist ul li:last div").html(listItem);
+     
+        var div2 =$("<div class='collapsible-body'>");
+        $("#barlist ul li:last").append(div2);
+        $("#barlist ul li:last div:last").text(loadingStr);
+        $("#barlist ul li:last div:last").attr('id', i+'-cbody');
+        $("#barlist ul li:last div:last").attr('reference', reference);
+
+        // This is required for making the list collapsible. Run this after list has been created.  
+        $('.collapsible').collapsible({
+            onOpenStart: showDetailsInList
+        });
+    
+    }
+}
+
+function showDetailsInList(element){
+    // console.log("collapse onOpen was fired!");
+    var collapsibleBody = $(element).find('.collapsible-body');
+    var referenceVal = collapsibleBody.attr("reference");
+    // console.log("reference: ", referenceVal);
+    var id = collapsibleBody.attr("id");
+    // console.log(id);
+
+    // Trigger click on the map for the correspoing item when an item on list is selected. 
+    var makerArrIndex = id.replace("-cbody","");
+    new google.maps.event.trigger(markerArr[makerArrIndex],'click');
+
+    var request = { reference: referenceVal };
+    service.getDetails(request, function (place, status) {
+        console.log("callbackGetDetails(place: " , place);
+        var contentString = "";
+
+        // Add Photo
+        if (typeof place.photos !== 'undefined') { 
+            var photoUrl = place.photos[0].getUrl();
+            contentString = contentString + "<img src='" + photoUrl + "' width=250px></p>" ;
+        } 
+
+        // Add Phone
+        contentString = contentString + "<b>Phone: </b>" + place.formatted_phone_number + "</p>" ;
+
+        // Add Address
+        contentString = contentString + "</p><b>Address: </b>" + place.formatted_address + "</p>" ;
+
+        
+        // Add Opening hours
+        var contentString = contentString + "<b>Opening Hours:</b> <br>";
+        for (var i=0; i<place.opening_hours.weekday_text.length; i++){
+            contentString = contentString + place.opening_hours.weekday_text[i] + "<br>";
+        }
+
+        // Add Website URL
+        contentString = contentString + "<p><b>Web: </b>" ;
+        if (typeof place.website !== 'undefined'){ 
+            var websiteUrl = place.website;
+            contentString = contentString + "<b><a href='" + websiteUrl +"' target='_blank'>Website</a> </b> | ";
+        }
+
+        // Add Google Map URL
+        contentString = contentString + "<b> <a href='" + place.url +"' target='_blank'>Google Map</a> </b>";
+
+        // console.log("PhotoURL: "+ photoUrl);
+        //console.log(contentString);
+
+        $("#" + id).html(contentString);
+    })
+}
+
+
 function createMarkers(places) {
     var bounds = new google.maps.LatLngBounds();
-
     for (var i = 0, place; place = places[i]; i++) {
         var image = {
             url: place.icon,
@@ -48,7 +165,7 @@ function createMarkers(places) {
             title: place.name,
             position: place.geometry.location
         });
-
+        markerArr[i] = marker;
         addInfoListener(marker, place);
         bounds.extend(place.geometry.location);
     }
@@ -68,23 +185,28 @@ function addInfoListener(marker, place) {
         // If you call many times consecutively, access will be denied. 
         service.getDetails(request, function (place, status) {
             // console.log("callbackGetDetails(place: " + place, " status: ", status, ")");
-            console.log("callbackGetDetails(place: " , place);
 
-            var photoUrl="";
-            if (typeof place.photos !== 'undefined') { 
-                photoUrl = place.photos[0].getUrl();
-            } 
-            // console.log("PhotoURL: "+ photoUrl);
+            var contentString = place.name + "<br>" +
+                                place.formatted_address + "<br>" + 
+                                place.formatted_phone_number + "<br>";
 
-            contentString = place.name + "<br>" +
-                            place.formatted_phone_number + "<br>" + place.formatted_address + "<br>" +
-                            "<img src='" + photoUrl + "' width=250px><br>" +
-                            "<a href='" + place.url +"' target='_blank'>Google Map</a>";
+            if (typeof place.website !== 'undefined'){ 
+                var websiteUrl = place.website;
+                contentString = contentString + "<a href='" + websiteUrl +"' target='_blank'>Website</a> | ";
+            }
+
+            contentString = contentString + "<a href='" + place.url +"' target='_blank'>Google Map</a>";
+
             //console.log(contentString);
+            // close window when another one is being opened.
+            if (currentInfoWindow){
+                currentInfoWindow.close();
+            }
             var infowindow = new google.maps.InfoWindow({
                 content: contentString
             });
             infowindow.open(map, marker);
+            currentInfoWindow = infowindow;
         }) // end of getDetails()
     }) // ebd of addListener()
 }
@@ -106,16 +228,16 @@ function getMyPositionHandler(position) {
 function showGeoLocationError(error) {
     switch (error.code) {
         case error.PERMISSION_DENIED:
-            console.log("User denied the request for Geolocation.");
+            $("#googleMap").text("User denied the request for Geolocation.");
             break;
         case error.POSITION_UNAVAILABLE:
-            console.log("Location information is unavailable.");
+            $("#googleMap").text("Location information is unavailable.");
             break;
         case error.TIMEOUT:
-            console.log("The request to get user location timed out.");
+            $("#googleMap").text("The request to get user location timed out.");
             break;
         case error.UNKNOWN_ERROR:
-            console.log("An unknown error occurred.");
+            $("#googleMap").text("An unknown error occurred.");
             break;
     }
 };
