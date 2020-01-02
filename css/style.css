@@ -9,59 +9,124 @@
         width: 100vw;
         height: 200px;
     }
-    .infoContainer{
+
+    .infoContainer {
         display: none;
     }
-    
+
     .headerText {
         color: #001a33;
         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-        font-style: italic;
         font-size: 70px;
     }
 
-    .kmart {
-        z-index: -100;
+    h4 {
+        font-family: 'Montserrat', sans-serif;
+        font-style: italic;
+        font-size: 25px;
+    }
+
+   
+
+ 
+
+    #strIngredients {
+        position: relative;
+        width: 100%;
+        padding: 10px;
+    }
+
+    #strInstructions {
+        position: relative;
+        width: 100%;
+        color: black;
+        padding: 10px;
+    }
+
+    .instruct {
+        position: relative;
+        width: 100%;
+        padding: 10px;
+        font-weight: 700;
+        text-align: center;
+        background-color: rgba(77, 2, 250, 0.5);
     }
 
     .card-title {
         position: relative;
         width: 100%;
         height: 10%;
-    
         margin-bottom: 10%;
         text-align: center;
         background-color: rgba(0, 122, 156, 0.5);
         z-index: 100;
     }
 
-    .myHeader { 
+    .blueTitle {
+        position: relative;
+        width: 100%;
+        padding: 10px;
+        margin-top: -75px;
+        text-align: center;
+        color: white;
+        font-weight: 700;
+        font-size: medium;
+        background-color: rgba(0, 122, 156, 0.5);
+        z-index: 100;
+    }
+
+    .blueContent {
+        padding: 10px;
+        margin-top: 20px;
+    }
+
+    .myHeader {
         margin: -110px;
         z-index: 100;
         position: relative;
         margin-bottom: 20px;
     }
+
     #toast-container {
+        text-align: center !important;
         top: 5% !important;
-        left: 50% !important;
-        margin-left: -78px;
         margin-top: -24px;
-        
     }
+
+    .rounded {
+        background-color: #aa00ff !important;
+        margin-top: 180px;
+        text-align: center !important;
+    }
+
     @media (max-width: 600px) {
         #toast-container {
-        left: 0% !important;
-        margin: 0px;
-        margin-top: -20px;
-        text-align: center;
-      
-
+            left: 0% !important;
+            margin: 0px;
+            text-align: center;
         }
-        .toast .message{
+        .toast .message {
             margin: auto;
         }
+        .social{
+            margin-top: 0px;
+        }
+        h4{
+            display: none;
+        }
+        .headerText {
+            margin-top: 45px;
+        }
+        .card{
+            font-size: 12px !important;
+        }
+        .card-title{
+            font-size: 12px !important;
+
+        }
+       
     }
-    
+
     .searchRow {
         padding-top: 15px;
     }
@@ -71,36 +136,42 @@
         content: center;
         background-color: purple;
     }
-    
+
     #strDrink {
         color: #4E4543;
         font-family: Arial, Helvetica, sans-serif;
         text-align: center;
     }
-    
-    .blueLagoon {
-        width: 120%;
-        margin: 10px;
+
+    .blueLagoonImage {
+        width: 100%;
     }
-    
-    #strInstructions {
-        color: black;
-    }
-    
-    .instruct {
-        color: black;
-    }
-    
+
     #searchButton {
-        background-color: #0080ff;
+        background-color: #0092e0;
     }
-    
+
+    #ingButton {
+        background-color:#a669f0;
+    }
+
     .btn {
         background-color: #0080ff;
     }
-    
+
     @media (max-width: 991px) {
         .blueLagoon {
+            display: none;
+        }
+        .headerText {
+            margin-top: 45px;
+        }
+        .card-title{
+            font-size: 18px !important;
+
+        }
+
+        h4{
             display: none;
         }
         .searchRow {
@@ -111,42 +182,96 @@
         .headerText {
             font-size: 60px;
         }
+        #toast-container {
+            text-align: center !important;
+            top: 5% !important;
+            left: 45% !important;
+            margin-top: 120px;
+        }
+        .rounded {
+            background-color: #aa00ff !important;
+            margin-top: 180px;
+            text-align: center !important;
+            width: 134px !important;
+        }
+        .social{
+            margin-top: -40px;
+        }
+        h4 {
+            margin-top: -10px;
+        }
     }
 
     @media (max-width: 350px) {
         .headerText {
             font-size: 40px;
         }
+        .social{
+            margin-top: -30px;
+        }
+        .card-title{
+            font-size: 10px !important;
+
+        }
     }
 
     @media (min-width: 992px) {
-        .headerText{
-            margin-top: 100px;
+        .headerText {
+            margin-top: 25px;
+        }
+        h4 {
+            margin-top: -10px;
+        }
+      
+        #toast-container {
+            text-align: center !important;
+            top: 5% !important;
+            left: 45% !important;
+            margin-top: 120px;
+        }
+        .rounded {
+            background-color: #aa00ff !important;
+            margin-top: 180px;
+            text-align: center !important;
+            width: 134px !important;
         }
         .social{
-            margin-top: 100px;
-        }        
+            margin-top: -80px;
+        }
     }
 
     .social [class*="fa fa-"] {
-        background-color:#4267B2;
-        border-radius: 30px;
+        background-color: #4267B2;
+        border-radius: 50px;
         color: #fff;
         /* display: inline-block; */
-        height: 40px;
+        height: 50px;
         /* line-height: 30px; */
         margin: auto 3px;
-        width: 40px;
-        padding-top: 5px;
+        width: 50px;
         font-size: 30px;
         text-align: center;
         margin-top: 30px;
+        padding-top: 10px;
     }
-    
+
     .social [class*="fa fa-"]:hover {
-        background-color: #46c0fb; 
+        background-color: #46c0fb;
     }
-    
+    a:hover{
+        color: #0079c4;
+    }
+
+    .blueLagoon:hover{
+        cursor: pointer;
+        background-color: #abe4f5;
+        
+    }
+    .kmart {
+        cursor: pointer;
+    }
+
     a {
         text-decoration: none;
+        color: #001a33;
     }
