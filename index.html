@@ -18,12 +18,13 @@
     <div class="row" style="margin-bottom: 0px">
         <div class="col s2" style="position: absolute;">
             <div class="card blueLagoon">
-                <div class="card-image">
+                <div class="mycard">
                     <img src="./images/bluelagoon.jpg" class="blueLagoonImage">
-                    <span class="card-title"></span>
+                    <div class="blueTitle">Blue Lagoon</div>
+                    
                 </div>
-                <div class="card-content">
-                    <p>Blue Lagoons are a delicious combination of Bicardi, blue curacao, and lemonade.</p>
+                <div class="card-content blueContent">
+                    <p>Blue Lagoons are a delicious combination of vodka, blue curacao, and lemonade.</p>
                 </div>
 
             </div>
@@ -33,10 +34,11 @@
     <header>
         <div class="row" style="height: 200px">
             <!-- offset-l1 is for moving text "Mixer Upper" to right so that Blue Lagoons does not hide it. -->
-            <div class="col s12 m12 offset-l1 l7 headerText center-align">
-                Mixer Upper
+            <div class="col s12 m7 offset-m3 offset-l3 l5 headerText center-align">
+                <a href="index.html">Mixer Upper</a>
+                <h4>Discover your new favourite cocktail</h4>
             </div>
-            <div class="col s12 m12 l4 social right-align">
+            <div class="col s12 m11 offset-m1 l4 offset-l8 social center-align">
                 <!-- home icon -->
                 <a href="index.html"><i class="fa fa-home"></i></a>
 
@@ -58,8 +60,8 @@
         </div>
     </header> 
 
-    <div class="row searchRow">
-        <div class="input-field col s6 offset-s3 searchInput center-align">
+    <div class="row mysearchRow">
+        <div class="input-field col s12 m4 offset-m3 l3 offset-l3 searchInput center-align">
             <input id="first_name" type="text">
             <label class="active" for="first_name">Search favourite cocktail</label>
             <div class="myButton col l12 m12 s12">
@@ -70,10 +72,21 @@
 
 
         </div>
+        <div class="input-field col s12 m3 searchInput center-align">
+            <input id="second_name" type="text">
+            <label class="active" for="second_name">Search by ingredient</label>
+            <div class="myButton col l12 m12 s12">
+                <button class="btn waves-effect waves-light" id="ingButton" type="submit" name="action">Search
+                    <i class="material-icons right">send</i> </button>
+
+            </div>
+
+
+        </div>
 
     </div>
     <div class="row">
-        <div class="col s6 offset-s3">
+        <div class="col s12 m6 offset-m3">
             
             <h5 class="textHide">
                 Impress your friends with the latest and greatest cocktail recipes! Any cocktail you can think of,
@@ -103,7 +116,7 @@
             <div class="col s12 m5">
                 <div class="card blue lighten-3">
 
-                    <span class="card-title instruct">Instructions</span>
+                    <div class="instruct">Instructions</div>
                     <div id="strInstructions">
                         Rub the rim of the glass with the lime slice to make the salt stick to it. Take care to moisten
                         only the outer rim and sprinkle the salt on it. The salt should present to the lips of the
@@ -115,7 +128,7 @@
 
                 <div class="card blue lighten-3">
 
-                    <span class="card-title instruct">Ingredient</span>
+                    <div class="instruct">Ingredients</div>
                     <div id="strIngredients">
                         <ul>
 
@@ -194,9 +207,7 @@
                                     <span class="card-title valign-wrapper center-align">Card Title</span>
                                 </div>
 
-                                <!-- <div class="card-action">
-                                    <a href="#">This is a link</a>
-                                </div> -->
+                             
 
                             </div>
                         </div>
@@ -206,21 +217,11 @@
             <br><br>
         </div>
     </div>
-    <!-- <footer class="page-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-      </div>
-    </div>
-  </footer> -->
 
-
-    <!--  Scripts-->
-    <!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="js/materialize.js"></script> -->
+    <script src="js/materialize.js"></script> 
     <script src="js/init.js"></script>
-    <script src="js/script.js"></script> -->
+    <script src="js/script.js"></script> 
 
 </body>
 

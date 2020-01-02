@@ -19,6 +19,41 @@ $(document).ready(function () {
     // on clicking the relevant button
     // gets input from form with id text1
     // replaces spaces in name with underscore
+    $(".blueLagoon").click(function(){
+        $(".textHide").hide();
+        $(".infoContainer").show();
+        console.log("the blue image has been clicked")
+        blueCocktail();
+        
+    })
+
+    function blueCocktail() {
+        event.preventDefault();
+        $(".blueLagoon").hide();
+        var bluecocktailURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=Blue%20lagoon";
+        
+        $.getJSON(bluecocktailURL, function (blueData) {
+           
+            //display the coctail detail page
+            // display the image
+            $(".cocktailThumb").attr("src", blueData.drinks[0].strDrinkThumb);
+            // display the instructions
+            $("#strInstructions").html(blueData.drinks[0].strInstructions);
+    
+            $("#strDrink").text(blueData.drinks[0].strDrink);
+            // clear the ingredients list
+            $("#strIngredients").html("");
+            // display the ingredients as a list, with the measures beside them
+                $("#strIngredients").append("<li>" + blueData.drinks[0].strIngredient1 + " " + blueData.drinks[0].strMeasure1);
+                $("#strIngredients").append("<li>" + blueData.drinks[0].strIngredient2 + " " + blueData.drinks[0].strMeasure2);
+                $("#strIngredients").append("<li>" + blueData.drinks[0].strIngredient3);
+                $("#strIngredients").append("<li>" + blueData.drinks[0].strIngredient4);
+                return;
+        
+     
+    
+        });
+    }
 
     $("#searchButton").click(function () {
         $(".textHide").hide();
@@ -28,8 +63,24 @@ $(document).ready(function () {
         console.log("cockname: " + cockName);
         cockName = cockName.replace(/\s/g, "_");
         console.log("No space: " + cockName);
+        
         getCocktail();
+        $("#first_name").val("");
+        
     });
+
+    $("#ingButton").click(function () {
+        $(".textHide").hide();
+        $(".infoContainer").show();
+        $(".blueLagoon").hide();
+        cockName = $("#second_name").val();
+        console.log("cockname: " + cockName);
+        cockName = cockName.replace(/\s/g, "_");
+        console.log("No space: " + cockName);
+        getCocktail();
+        $("#second_name").val("");
+    });
+
     for (var i = 5; i > 0; i--) {
         let cardID = "card-" + (i - 1); // if we use var the for loop will finish before the first ajax call comes back, so all the ajax calls will use card-1. "let" prevents this.
         console.log("random cardID: " + cardID);
@@ -64,14 +115,21 @@ function getCocktail() {
     console.log("URL: " + cocktailURL);
 
     $.getJSON(cocktailURL, function (response) {
-        if (response.drinks === null) {
+        if (response.drinks === null || cockName=="") {
+            $(".blueLagoon").show();
             // alert("drink not found");
-            M.toast({ html: "<div class='message'>I am not a drink</div>" })
+            M.toast({ 
+                html: "<div class='message'>Not found!</div>",
+                classes: 'rounded',
+                displayLength: 1500, 
+            
+            },)
         }
         console.log(response);
 
         //display the coctail detail page
         // display the image
+        
         $(".cocktailThumb").attr("src", response.drinks[0].strDrinkThumb);
         // display the instructions
         $("#strInstructions").html(response.drinks[0].strInstructions);
@@ -82,15 +140,19 @@ function getCocktail() {
         // display the ingredients as a list, with the measures beside them
         if (response.drinks[0].strIngredient1 !== null) {
             $("#strIngredients").append("<li>" + response.drinks[0].strIngredient1 + " " + response.drinks[0].strMeasure1);
+            
         }
         if (response.drinks[0].strIngredient2 !== null) {
             $("#strIngredients").append("<li>" + response.drinks[0].strIngredient2 + " " + response.drinks[0].strMeasure2);
+          
         }
         if (response.drinks[0].strIngredient3 !== null) {
             $("#strIngredients").append("<li>" + response.drinks[0].strIngredient3 + " " + response.drinks[0].strMeasure3);
+            
         }
         if (response.drinks[0].strIngredient4 !== null) {
             $("#strIngredients").append("<li>" + response.drinks[0].strIngredient4 + " " + response.drinks[0].strMeasure4);
+            
         }
         if (response.drinks[0].strIngredient5 !== null) {
             $("#strIngredients").append("<li>" + response.drinks[0].strIngredient5 + " " + response.drinks[0].strMeasure5);
@@ -140,12 +202,16 @@ function getCocktail() {
 // get cocktails by ingredient
 // this gives an array of cocktails with name, image and cocktail ID. They can be displayed, and linked through to the actual cocktail. 
 
+
+
+
+
 function getIngredSuggestions(ingredName) {
     var ingredURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + ingredName;
 
     $.getJSON(ingredURL, function (response) {
-        console.log(response);
-        fillCards(response);
+        console.log("ton ingredients " + response);
+        ingFillCards(response);
 
     });
 }
@@ -274,6 +340,8 @@ $("#startButton").click(function (event) {
 });
 
 
+
+
 // Clicking Links in Cards
 
 $(".card-image").click(function(event){
@@ -282,7 +350,7 @@ $(".card-image").click(function(event){
     console.log("click title: " + $(this).find(".card-title").text());
     $(".textHide").hide();
     $(".infoContainer").show();
-    $(".blueLagoon").hide();
+   
     getCocktail();
 })
 
