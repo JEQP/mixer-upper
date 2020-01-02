@@ -17,31 +17,42 @@
 
 <body>
     <header>
-        <div class="row" style="height: 200px">
-            <!-- offset-l1 is for moving text "Mixer Upper" to right so that Blue Lagoons does not hide it. -->
-            <div class="col s12 m7 offset-m3 offset-l3 l5 headerText center-align">
-                <a href="index.html">Mixer Upper</a>
-                <h4>Discover your new favourite cocktail</h4>
+        <div class="row carRow" style="margin-bottom: 0px">
+            <div class="col s12 m12 l12 left-align carCol">
+                <div class="carousel carousel-slider">
+                    <div class="carousel-fixed-item center col s12 m12 offset-l3 l5 headerText center-align">
+                        <a href="index.html" class="myMix">Mixer Upper</a>
+                        <h4>Discover your new favourite cocktail</h4>
+                    </div>
+                    <div class="carousel-fixed-item col s12 m12 l4 offset-l8 social center-align">
+                        <!-- home icon -->
+                        <a href="index.html"><i class="fa fa-home"></i></a>
+        
+                        <!-- map icon -->
+                        <a href="map.html"><i class="fa fa-map"></i></a>
+        
+                        <!-- twitter icon -->
+                        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw&text=This%20is%20text&url=https://jeqp.github.io/mixer-upper/"
+                            class="fa fa-twitter" data-show-count="false" onclick="window.open('https://twitter.com/share?ref_src=twsrc%5Etfw&text=Impress%20your%20friends%20with%20the%20latest%20and%20greatest%20cocktail%20recipes!%20Any%20cocktail%20you%20can%20think%20of,%20and%20we%20will%20show%20you%20how%20to%20make%20it!&url=https://jeqp.github.io/mixer-upper/', 
+                    'newwindow', 
+                    'width=900,height=250'); return false;"></a>
+                        <!-- facebook icon -->
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://jeqp.github.io/mixer-upper/&amp;src=sdkpreparse"
+                            class="fa fa-facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://jeqp.github.io/mixer-upper/&amp;src=sdkpreparse', 
+                    'newwindow', 
+                    'width=900,height=400'); return false;"></a>
+        
+                    </div>
+                    <a class="carousel-item" href="#one!"><img src="./images/header-image-blur.jpg"></a>
+                    <a class="carousel-item" href="#two!"><img src="./images/ten-blur.jpg"></a>
+                    <a class="carousel-item" href="#three!"><img src="./images/two-blur.jpg"></a>
+                    <a class="carousel-item" href="#four!"><img src="./images/four-blur.jpg"></a>
+                    <a class="carousel-item" href="#five!"><img src="./images/eight-blur.jpg"></a>
+                  </div>
+                
             </div>
-            <div class="col s12 m12 l4 social right-align">
-                <!-- home icon -->
-                <a href="index.html"><i class="fa fa-home"></i></a>
-
-                <!-- map icon -->
-                <a href="map.html"><i class="fa fa-map"></i></a>
-
-                <!-- twitter icon -->
-                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw&text=This%20is%20text&url=https://jeqp.github.io/mixer-upper/"
-                    class="fa fa-twitter" data-show-count="false" onclick="window.open('https://twitter.com/share?ref_src=twsrc%5Etfw&text=Impress%20your%20friends%20with%20the%20latest%20and%20greatest%20cocktail%20recipes!%20Any%20cocktail%20you%20can%20think%20of,%20and%20we%20will%20show%20you%20how%20to%20make%20it!&url=https://jeqp.github.io/mixer-upper/', 
-            'newwindow', 
-            'width=900,height=250'); return false;"></a>
-                <!-- facebook icon -->
-                <a href="https://www.facebook.com/sharer/sharer.php?u=https://jeqp.github.io/mixer-upper/&amp;src=sdkpreparse"
-                    class="fa fa-facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://jeqp.github.io/mixer-upper/&amp;src=sdkpreparse', 
-            'newwindow', 
-            'width=900,height=400'); return false;"></a>
-
-            </div>
+        
+        
         </div>
     </header> 
 
@@ -58,7 +69,7 @@
             </div>
         </div>
             <div id="barlist" class="col m5 s12">
-            <!-- bar list is inserted here by js. -->
+           
         </div>
     </div>
 
@@ -67,6 +78,8 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApwVI5uV_mtWrnlZoY-whSUb8FISb3iQQ&callback=myMap&libraries=places"></script>
     <script src="./js/map.js"></script>
     <script src="./js/materialize.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/script.js"></script> 
 </body>
 
 </html>

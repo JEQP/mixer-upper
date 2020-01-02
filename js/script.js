@@ -15,6 +15,10 @@ var cockName = "string";
 
 
 $(document).ready(function () {
+    $('.carousel.carousel-slider').carousel({
+        fullWidth: true
+      });
+     
 
     // on clicking the relevant button
     // gets input from form with id text1

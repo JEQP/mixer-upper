@@ -1,14 +1,11 @@
-    header {
-        background-image: url("../images/header-image-lagoon.jpg");
-        background-repeat: no-repeat;
-        background-size: 100% 200px;
-    }
 
-    .headerImg {
-        width: 100%;
-        width: 100vw;
-        height: 200px;
-    }
+
+  .carCol{
+      margin-top: -100px;
+      z-index: -500;
+  }
+
+   
 
     .infoContainer {
         display: none;
@@ -18,12 +15,21 @@
         color: #001a33;
         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         font-size: 70px;
+        z-index: 100;
+     
+
     }
+   
 
     h4 {
         font-family: 'Montserrat', sans-serif;
         font-style: italic;
+        font-weight: 900;
         font-size: 25px;
+    }
+    .blueLagoon {
+        margin-top: -160px;
+        margin-left: 10px;
     }
 
    
@@ -66,7 +72,6 @@
         position: relative;
         width: 100%;
         padding: 10px;
-        margin-top: -75px;
         text-align: center;
         color: white;
         font-weight: 700;
@@ -80,12 +85,7 @@
         margin-top: 20px;
     }
 
-    .myHeader {
-        margin: -110px;
-        z-index: 100;
-        position: relative;
-        margin-bottom: 20px;
-    }
+ 
 
     #toast-container {
         text-align: center !important;
@@ -94,41 +94,9 @@
     }
 
     .rounded {
-        background-color: #aa00ff !important;
+        background-color: #ffbd4a !important;
         margin-top: 180px;
         text-align: center !important;
-    }
-
-    @media (max-width: 600px) {
-        #toast-container {
-            left: 0% !important;
-            margin: 0px;
-            text-align: center;
-        }
-        .toast .message {
-            margin: auto;
-        }
-        .social{
-            margin-top: 0px;
-        }
-        h4{
-            display: none;
-        }
-        .headerText {
-            margin-top: 45px;
-        }
-        .card{
-            font-size: 12px !important;
-        }
-        .card-title{
-            font-size: 12px !important;
-
-        }
-       
-    }
-
-    .searchRow {
-        padding-top: 15px;
     }
 
     .centered {
@@ -159,85 +127,209 @@
         background-color: #0080ff;
     }
 
-    @media (max-width: 991px) {
+    @media (max-width: 375px) {
+        
+      
+        h4{
+            display: none;
+        }
+       
+        .card{
+            font-size: 12px !important;
+        }
+        .card-title{
+            font-size: 12px !important;
+
+        }
+        .blueLagoon {
+            display: none !important;
+        }
+        .carCol {
+            margin-top: 5px;
+            padding-top: 0px;
+        }
+      
+
+        .social [class*="fa fa-"] {
+            position: relative !important;
+            height: 3px !important;  
+            width: 20px !important;
+            padding-bottom: 15px;
+            padding-top: 5px !important;
+            font-size: 12px !important;
+            text-align: center;
+    
+        }
+        .myMix{
+            font-size: 25px;
+        }
+        .headerText{
+            margin-bottom: 15px !important;
+        }
+      
+     
+       
+    }
+
+
+
+    @media (min-width: 376px) and (max-width: 600px) {
+        
+        
+      
+      
+        h4{
+            display: none;
+        }
+       
+        .card{
+            font-size: 12px !important;
+        }
+        .card-title{
+            font-size: 12px !important;
+
+        }
+        .blueLagoon {
+            display: none !important;
+        }
+        .carCol {
+            margin-top: 5px;
+            padding-top: 0px;
+        }
+      
+
+        .social [class*="fa fa-"] {
+            height: 20px !important;  
+            width: 25px !important;
+            padding-bottom: 20px;
+            padding-top: 5px !important;
+            font-size: 15px !important;
+            text-align: center;
+    
+        }
+        .myMix{
+            margin-bottom: 20px;
+            font-size: 40px;
+        }
+        .headerText{
+            margin-bottom: 15px !important;
+        }
+    
+       
+    }
+
+    @media (min-width: 601px) and (max-width: 800px) {
+        #toast-container {
+            left: 0% !important;
+            margin: 0px;
+            text-align: center;
+        }
+        .toast .message {
+            margin: auto;
+        }
+        .blueLagoon {
+            display: none !important;
+        }
+      
+      
+        h4{
+            display: none;
+        }
+       
+        .card{
+            font-size: 12px !important;
+        }
+        .card-title{
+            font-size: 12px !important;
+
+        }
+        .blueLagoon {
+            display: none !important;
+        }
+        .carCol {
+            margin-top: 5px;
+            padding-top: 0px;
+        }
+      
+
+        .social [class*="fa fa-"] {
+            height: 40px !important;  
+            width: 40px !important;
+            padding-bottom: 20px;
+            padding-top: 7px !important;
+            font-size: 25px !important;
+            text-align: center;
+    
+        }
+        .myMix{
+            margin-bottom: 25px;
+            font-size: 60px;
+        }
+       
+    }
+
+    @media (max-width: 992px) {
+
+      
         .blueLagoon {
             display: none;
         }
-        .headerText {
-            margin-top: 45px;
+         .headerText{
+            margin-bottom: 45px;
+            font-size: 45px;
         }
+
+       
         .card-title{
             font-size: 18px !important;
 
         }
+      
 
         h4{
             display: none;
         }
-        .searchRow {
-            padding-top: 15px;
-            margin-top: 50px;
-            ;
-        }
-        .headerText {
-            font-size: 60px;
-        }
+       
+     
         #toast-container {
             text-align: center !important;
             top: 5% !important;
-            left: 45% !important;
-            margin-top: 120px;
+            left: 40% !important;
+            margin-top: 100px;
         }
         .rounded {
-            background-color: #aa00ff !important;
-            margin-top: 180px;
+            background-color: #ffbd4a !important;
+            margin-top: 20px;
             text-align: center !important;
             width: 134px !important;
-        }
-        .social{
-            margin-top: -40px;
-        }
-        h4 {
-            margin-top: -10px;
-        }
-    }
-
-    @media (max-width: 350px) {
-        .headerText {
-            font-size: 40px;
-        }
-        .social{
-            margin-top: -30px;
-        }
-        .card-title{
-            font-size: 10px !important;
-
-        }
-    }
-
-    @media (min-width: 992px) {
-        .headerText {
-            margin-top: 25px;
-        }
-        h4 {
-            margin-top: -10px;
         }
       
+    }
+
+    @media (min-width: 993px) {
+        .myMix{
+            bottom: 5px !important;
+            font-size: 70px;
+        
+    
+        }
+        h4 {
+            padding: 0px;
+            margin: 0px;
+        }
         #toast-container {
             text-align: center !important;
             top: 5% !important;
-            left: 45% !important;
-            margin-top: 120px;
+            left: 40% !important;
+            margin-top: 0px;
         }
         .rounded {
-            background-color: #aa00ff !important;
-            margin-top: 180px;
+            background-color: #ffbd4a !important;
+            margin-top: 20px;
             text-align: center !important;
             width: 134px !important;
         }
-        .social{
-            margin-top: -80px;
-        }
+      
     }
 
     .social [class*="fa fa-"] {
