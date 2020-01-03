@@ -1,0 +1,10 @@
+diff a/map.html b/map.html	(rejected hunks)
+@@ -4,7 +4,7 @@
+ <head>
+     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+-    <title>Starter Template - Materialize</title>
++    <title>Mixer Upper - Map</title>
+ 
+     <!-- CSS  -->
+     <link href="https://fonts.googleapis.com/css?family=Montserrat:200&display=swap" rel="stylesheet">

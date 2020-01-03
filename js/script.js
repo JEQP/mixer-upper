@@ -109,6 +109,14 @@ $("#first_name").on('keyup', function (event) {
     }
 });
 
+$("#second_name").on('keyup', function (event) {
+
+    if (event.keyCode === 13) {
+        $("#ingButton").click();
+
+    }
+});
+
 // make call
 
 // get cocktail by name
@@ -199,6 +207,7 @@ function getCocktail() {
         console.log("img: " + response.drinks[0].strDrinkThumb); // image
         console.log("ing: " + response.drinks[0].strIngredient1); // ingredients are listed seperately. We'll need code to go through and eliminate null entries
         console.log("measure: " + response.drinks[0].strMeasure1); // this is the measure for the ingredients. 1 matches with 1
+        window.scrollTo(0, 0); 
         fillCards(response);
 
     });
@@ -210,15 +219,15 @@ function getCocktail() {
 
 
 
-function getIngredSuggestions(ingredName) {
-    var ingredURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + ingredName;
+// function getIngredSuggestions(ingredName) {
+//     var ingredURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + ingredName;
 
-    $.getJSON(ingredURL, function (response) {
-        console.log("ton ingredients " + response);
-        ingFillCards(response);
+//     $.getJSON(ingredURL, function (response) {
+//         console.log("ton ingredients " + response);
+//         ingFillCards(response);
 
-    });
-}
+//     });
+// }
 
 
 // This function is to fill the cards on the page with relevant data
