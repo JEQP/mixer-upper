@@ -79,6 +79,14 @@ $(document).ready(function () {
         ingredName = $("#second_name").val();
 
         ingredName = ingredName.replace(/\s/g, "_");
+        if (ingredName == "") {
+            M.toast({
+                html: "<div class='message'>Not found!</div>",
+                classes: 'rounded',
+                displayLength: 1500,
+
+            })
+        }
 
         getIngredSuggestions();
         $("#second_name").val("");
@@ -126,9 +134,7 @@ function getCocktail() {
 
     $.getJSON(cocktailURL, function (response) {
         if (response.drinks === null || cockName == "") {
-            
-            $(".blueLagoon").show();
-            // alert("drink not found");
+  
             M.toast({
                 html: "<div class='message'>Not found!</div>",
                 classes: 'rounded',
