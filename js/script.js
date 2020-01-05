@@ -17,45 +17,44 @@ var cockName = "string";
 $(document).ready(function () {
     $('.carousel.carousel-slider').carousel({
         fullWidth: true
-      });
-     
+    });
+
 
     // on clicking the relevant button
     // gets input from form with id text1
     // replaces spaces in name with underscore
-    $(".blueLagoon").click(function(){
+    $(".blueLagoon").click(function () {
         $(".textHide").hide();
         $(".infoContainer").show();
-        console.log("the blue image has been clicked")
         blueCocktail();
-        
+
     })
 
     function blueCocktail() {
         event.preventDefault();
         $(".blueLagoon").hide();
         var bluecocktailURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=Blue%20lagoon";
-        
+
         $.getJSON(bluecocktailURL, function (blueData) {
-           
+
             //display the coctail detail page
             // display the image
             $(".cocktailThumb").attr("src", blueData.drinks[0].strDrinkThumb);
             // display the instructions
             $("#strInstructions").html(blueData.drinks[0].strInstructions);
-    
+
             $("#strDrink").text(blueData.drinks[0].strDrink);
             // clear the ingredients list
             $("#strIngredients").html("");
             // display the ingredients as a list, with the measures beside them
-                $("#strIngredients").append("<li>" + blueData.drinks[0].strIngredient1 + " " + blueData.drinks[0].strMeasure1);
-                $("#strIngredients").append("<li>" + blueData.drinks[0].strIngredient2 + " " + blueData.drinks[0].strMeasure2);
-                $("#strIngredients").append("<li>" + blueData.drinks[0].strIngredient3);
-                $("#strIngredients").append("<li>" + blueData.drinks[0].strIngredient4);
-                return;
-        
-     
-    
+            $("#strIngredients").append("<li>" + blueData.drinks[0].strIngredient1 + " " + blueData.drinks[0].strMeasure1);
+            $("#strIngredients").append("<li>" + blueData.drinks[0].strIngredient2 + " " + blueData.drinks[0].strMeasure2);
+            $("#strIngredients").append("<li>" + blueData.drinks[0].strIngredient3);
+            $("#strIngredients").append("<li>" + blueData.drinks[0].strIngredient4);
+            return;
+
+
+
         });
     }
 
@@ -67,21 +66,21 @@ $(document).ready(function () {
         console.log("cockname: " + cockName);
         cockName = cockName.replace(/\s/g, "_");
         console.log("No space: " + cockName);
-        
+
         getCocktail();
         $("#first_name").val("");
-        
+
     });
 
     $("#ingButton").click(function () {
         $(".textHide").hide();
         $(".infoContainer").show();
         $(".blueLagoon").hide();
-        cockName = $("#second_name").val();
-        console.log("cockname: " + cockName);
-        cockName = cockName.replace(/\s/g, "_");
-        console.log("No space: " + cockName);
-        getCocktail();
+        ingredName = $("#second_name").val();
+
+        ingredName = ingredName.replace(/\s/g, "_");
+
+        getIngredSuggestions();
         $("#second_name").val("");
     });
 
@@ -124,24 +123,23 @@ $("#second_name").on('keyup', function (event) {
 function getCocktail() {
 
     var cocktailURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + cockName;
-    console.log("URL: " + cocktailURL);
 
     $.getJSON(cocktailURL, function (response) {
-        if (response.drinks === null || cockName=="") {
+        if (response.drinks === null || cockName == "") {
+            
             $(".blueLagoon").show();
             // alert("drink not found");
-            M.toast({ 
+            M.toast({
                 html: "<div class='message'>Not found!</div>",
                 classes: 'rounded',
-                displayLength: 1500, 
-            
-            },)
+                displayLength: 1500,
+
+            })
         }
-        console.log(response);
 
         //display the coctail detail page
         // display the image
-        
+
         $(".cocktailThumb").attr("src", response.drinks[0].strDrinkThumb);
         // display the instructions
         $("#strInstructions").html(response.drinks[0].strInstructions);
@@ -152,19 +150,19 @@ function getCocktail() {
         // display the ingredients as a list, with the measures beside them
         if (response.drinks[0].strIngredient1 !== null) {
             $("#strIngredients").append("<li>" + response.drinks[0].strIngredient1 + " " + response.drinks[0].strMeasure1);
-            
+
         }
         if (response.drinks[0].strIngredient2 !== null) {
             $("#strIngredients").append("<li>" + response.drinks[0].strIngredient2 + " " + response.drinks[0].strMeasure2);
-          
+
         }
         if (response.drinks[0].strIngredient3 !== null) {
             $("#strIngredients").append("<li>" + response.drinks[0].strIngredient3 + " " + response.drinks[0].strMeasure3);
-            
+
         }
         if (response.drinks[0].strIngredient4 !== null) {
             $("#strIngredients").append("<li>" + response.drinks[0].strIngredient4 + " " + response.drinks[0].strMeasure4);
-            
+
         }
         if (response.drinks[0].strIngredient5 !== null) {
             $("#strIngredients").append("<li>" + response.drinks[0].strIngredient5 + " " + response.drinks[0].strMeasure5);
@@ -207,7 +205,7 @@ function getCocktail() {
         console.log("img: " + response.drinks[0].strDrinkThumb); // image
         console.log("ing: " + response.drinks[0].strIngredient1); // ingredients are listed seperately. We'll need code to go through and eliminate null entries
         console.log("measure: " + response.drinks[0].strMeasure1); // this is the measure for the ingredients. 1 matches with 1
-        window.scrollTo(0, 0); 
+        window.scrollTo(0, 0);
         fillCards(response);
 
     });
@@ -241,7 +239,7 @@ function fillCards(response) {
             $("#" + cardID).find(".card-title").text(response.drinks[i].strDrink);
             $("#" + cardID).find("p").text(response.drinks[i].strCategory);
             $("#" + cardID).find(".card-action").attr("href", "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + response.drinks[i].strDrink);
-                console.log("url: " + $("#" + cardID).find(".card-action").attr("href"));
+            console.log("url: " + $("#" + cardID).find(".card-action").attr("href"));
         }
     }
     // if there are less than 5 items in the array, fill the remaining cards with random content.
@@ -253,7 +251,7 @@ function fillCards(response) {
             $("#" + cardID).find(".card-title").text(response.drinks[i].strDrink);
             $("#" + cardID).find(".card-content").text(response.drinks[i].strCategory);
             $("#" + cardID).find(".card-action").attr("href", "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + response.drinks[i].strDrink);
-                console.log("url: " + $("#" + cardID).find(".card-action").attr("href"));
+            console.log("url: " + $("#" + cardID).find(".card-action").attr("href"));
         }
 
         for (var i = 5; i > response.drinks.length; i--) {
@@ -278,7 +276,164 @@ function fillCards(response) {
 
 }
 
+function getIngredSuggestions() {
 
+    var ingredURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + ingredName;
+
+    $.getJSON(ingredURL, function (ingResponse) {
+        
+
+        //display the coctail detail page
+        // display the image
+
+        $(".cocktailThumb").attr("src", ingResponse.drinks[0].strDrinkThumb);
+
+        $("#strDrink").text(ingResponse.drinks[0].strDrink);
+        var result = ingResponse.drinks[0].strDrink;
+
+
+        var resultURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + result;
+
+
+
+        $.getJSON(resultURL, function (myResult) {
+            // if (myResult.drinks[0]== "") {
+            //     console.log("tonnette wants to know what is ing response.drinks " + myResult.drinks[0].strInstructions);
+            //     $(".blueLagoon").show();
+            //     // alert("drink not found");
+            //     M.toast({
+            //         html: "<div class='message'>Not found!</div>",
+            //         classes: 'rounded',
+            //         displayLength: 1500,
+    
+            //     })
+            // }
+            
+            
+            $(".cocktailThumb").attr("src", myResult.drinks[0].strDrinkThumb);
+            // display the instructions
+            $("#strInstructions").html(myResult.drinks[0].strInstructions);
+
+            $("#strDrink").text(myResult.drinks[0].strDrink);
+            // clear the ingredients list
+            $("#strIngredients").html("");
+            // display the ingredients as a list, with the measures beside them
+            if (myResult.drinks[0].strIngredient1 !== null) {
+                $("#strIngredients").append("<li>" + myResult.drinks[0].strIngredient1 + " " + myResult.drinks[0].strMeasure1);
+
+            }
+            if (myResult.drinks[0].strIngredient2 !== null) {
+                $("#strIngredients").append("<li>" + myResult.drinks[0].strIngredient2 + " " + myResult.drinks[0].strMeasure2);
+
+            }
+            if (myResult.drinks[0].strIngredient3 !== null) {
+                $("#strIngredients").append("<li>" + myResult.drinks[0].strIngredient3 + " " + myResult.drinks[0].strMeasure3);
+
+            }
+            if (myResult.drinks[0].strIngredient4 !== null) {
+                $("#strIngredients").append("<li>" + myResult.drinks[0].strIngredient4 + " " + myResult.drinks[0].strMeasure4);
+
+            }
+            if (myResult.drinks[0].strIngredient5 !== null) {
+                $("#strIngredients").append("<li>" + myResult.drinks[0].strIngredient5 + " " + myResult.drinks[0].strMeasure5);
+
+            }
+            if (myResult.drinks[0].strIngredient6 !== null) {
+                $("#strIngredients").append("<li>" + myResult.drinks[0].strIngredient6 + " " + myResult.drinks[0].strMeasure6);
+
+            }
+            if (myResult.drinks[0].strIngredient7 !== null) {
+                $("#strIngredients").append("<li>" + myResult.drinks[0].strIngredient7 + " " + myResult.drinks[0].strMeasure7);
+
+            }
+            if (myResult.drinks[0].strIngredient8 !== null) {
+                $("#strIngredients").append("<li>" + myResult.drinks[0].strIngredient8 + " " + myResult.drinks[0].strMeasure8);
+
+            }
+            if (myResult.drinks[0].strIngredient9 !== null) {
+                $("#strIngredients").append("<li>" + myResult.drinks[0].strIngredient9 + " " + myResult.drinks[0].strMeasure9);
+
+            }
+            if (myResult.drinks[0].strIngredient10 !== null) {
+                $("#strIngredients").append("<li>" + myResult.drinks[0].strIngredient10 + " " + myResult.drinks[0].strMeasure10);
+
+            }
+            if (myResult.drinks[0].strIngredient11 !== null) {
+                $("#strIngredients").append("<li>" + myResult.drinks[0].strIngredient11 + " " + myResult.drinks[0].strMeasure11);
+
+            }
+            if (myResult.drinks[0].strIngredient12 !== null) {
+                $("#strIngredients").append("<li>" + myResult.drinks[0].strIngredient12 + " " + myResult.drinks[0].strMeasure12);
+
+            }
+            if (myResult.drinks[0].strIngredient13 !== null) {
+                $("#strIngredients").append("<li>" + myResult.drinks[0].strIngredient12 + " " + myResult.drinks[0].strMeasure13);
+
+            }
+            if (myResult.drinks[0].strIngredient14 !== null) {
+                $("#strIngredients").append("<li>" + myResult.drinks[0].strIngredient14 + " " + myResult.drinks[0].strMeasure14);
+
+            }
+            if (myResult.drinks[0].strIngredient15 !== null) {
+                $("#strIngredients").append("<li>" + myResult.drinks[0].strIngredient15 + " " + myResult.drinks[0].strMeasure15);
+
+            }
+
+        })
+
+        // clear the ingredients list
+        // display the ingredients as a list, with the measures beside them
+
+        window.scrollTo(0, 0);
+        ingfillCards(ingResponse);
+
+    });
+}
+function ingfillCards(ingResponse) {
+
+    // Check how many items are in the array returned
+    // do a loop to fill four cards with items 1-4 of the array (item zero is the main card)
+    if (ingResponse.drinks.length > 4) {
+        for (var i = 1; i < 5; i++) {
+            var cardID = "card-" + i;
+            $("#" + cardID).find("img").attr("src", ingResponse.drinks[i].strDrinkThumb);
+            $("#" + cardID).find(".card-title").text(ingResponse.drinks[i].strDrink);
+
+        }
+    }
+    // if there are less than 5 items in the array, fill the remaining cards with random content.
+    else {
+        for (var i = 1; i < ingResponse.drinks.length; i++) {
+            var cardID = "card-" + i;
+            console.log("card: " + cardID);
+            $("#" + cardID).find("img").attr("src", ingResponse.drinks[i].strDrinkThumb);
+            $("#" + cardID).find(".card-title").text(ingResponse.drinks[i].strDrink);
+            $("#" + cardID).find(".card-content").text(ingResponse.drinks[i].strCategory);
+            $("#" + cardID).find(".card-action").attr("href", "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + ingResponse.drinks[i].strDrink);
+            console.log("url: " + $("#" + cardID).find(".card-action").attr("href"));
+        }
+
+        for (var i = 5; i > ingResponse.drinks.length; i--) {
+            let cardID = "card-" + (i - 1); // if we use var the for loop will finish before the first ajax call comes back, so all the ajax calls will use card-1. "let" prevents this.
+            console.log("random cardID: " + cardID);
+            var randomURL = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
+            $.getJSON(randomURL, function (randomCock) {
+                console.log("random: " + randomCock);
+                console.log("card: " + cardID);
+                $("#" + cardID).find("img").attr("src", randomCock.drinks[0].strDrinkThumb);
+                $("#" + cardID).find(".card-title").text(randomCock.drinks[0].strDrink);
+                $("#" + cardID).find(".card-content").text(randomCock.drinks[0].strCategory);
+                $("#" + cardID).find(".card-action").attr("href", "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + randomCock.drinks[0].strDrink);
+                console.log("url: " + $("#" + cardID).find(".card-action").attr("href"));
+            });
+
+        }
+    }
+
+
+
+
+}
 
 
 // // for (var x in response.drinks[0]){
@@ -357,13 +512,13 @@ $("#startButton").click(function (event) {
 
 // Clicking Links in Cards
 
-$(".card-image").click(function(event){
+$(".card-image").click(function (event) {
     event.stopPropagation();
     cockName = $(this).find(".card-title").text();
     console.log("click title: " + $(this).find(".card-title").text());
     $(".textHide").hide();
     $(".infoContainer").show();
-   
+
     getCocktail();
 })
 
