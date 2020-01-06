@@ -95,14 +95,7 @@ $(document).ready(function () {
         ingredName = $("#second_name").val();
 
         ingredName = ingredName.replace(/\s/g, "_");
-        if (ingredName == "") {
-            M.toast({
-                html: "<div class='message'>Not found!</div>",
-                classes: 'rounded',
-                displayLength: 1500,
-
-            })
-        }
+      
 
         getIngredSuggestions();
         $("#second_name").val("");
@@ -410,6 +403,13 @@ function getIngredSuggestions() {
         window.scrollTo(0, 0);
         ingfillCards(ingResponse);
 
+    }).fail(function(){
+        M.toast({
+            html: "<div class='message'>Not found!</div>",
+            classes: 'rounded',
+            displayLength: 1500,
+
+        });
     });
 }
 function ingfillCards(ingResponse) {
