@@ -286,8 +286,11 @@ function getIngredSuggestions() {
 
     var ingredURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + ingredName;
 
+    console.log("ingredURL: " + ingredURL);
     $.getJSON(ingredURL, function (ingResponse) {
-        
+        console.log("ingresponse: " + ingResponse);
+        console.log("ingredURL: " + ingredURL);
+
 
         //display the coctail detail page
         // display the image
@@ -385,7 +388,7 @@ function getIngredSuggestions() {
 
             }
 
-        })
+        });
 
         // clear the ingredients list
         // display the ingredients as a list, with the measures beside them
@@ -393,8 +396,17 @@ function getIngredSuggestions() {
         window.scrollTo(0, 0);
         ingfillCards(ingResponse);
 
+    }).fail(function(){
+        M.toast({
+            html: "<div class='message'>Not found!</div>",
+            classes: 'rounded',
+            displayLength: 1500,
+
+        });
     });
+
 }
+
 function ingfillCards(ingResponse) {
 
     // Check how many items are in the array returned
