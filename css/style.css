@@ -32,7 +32,9 @@
         margin-left: 10px;
     }
 
-   
+   .indicators {
+       display: none;
+   }
 
  
 
@@ -127,7 +129,8 @@
         background-color: #0080ff;
     }
 
-    @media (max-width: 375px) {
+    @media (max-width: 384px) {
+        
         
       
         h4{
@@ -162,10 +165,14 @@
         }
         .myMix{
             font-size: 25px;
+           
         }
         .headerText{
-            margin-bottom: 15px !important;
+            position: relative !important;
+          
+           
         }
+       
       
      
        
@@ -173,11 +180,7 @@
 
 
 
-    @media (min-width: 376px) and (max-width: 600px) {
-        
-        
-      
-      
+    @media (min-width: 385px) and (max-width: 600px) {
         h4{
             display: none;
         }
@@ -193,27 +196,33 @@
             display: none !important;
         }
         .carCol {
-            margin-top: 5px;
+            margin-top: 0px;
             padding-top: 0px;
         }
-      
-
+        
+      .carousel {
+          position: relative !important;
+          bottom: -50px !important;
+      }
         .social [class*="fa fa-"] {
-            height: 20px !important;  
+            height: 25px !important;  
             width: 25px !important;
-            padding-bottom: 20px;
+            padding-bottom: 15px !important;;
             padding-top: 5px !important;
             font-size: 15px !important;
             text-align: center;
     
         }
         .myMix{
-            margin-bottom: 20px;
+            margin-bottom: 0px;
             font-size: 40px;
         }
         .headerText{
-            margin-bottom: 15px !important;
+            position: relative !important;
+            top: 5px !important;
+    
         }
+     
     
        
     }

@@ -17,7 +17,10 @@ var cockName = "string";
 $(document).ready(function () {
     $('.carousel.carousel-slider').carousel({
         fullWidth: true
-    });
+      });
+      setInterval(function(){
+          $('.carousel').carousel('next')
+      }, 5000);
 
 
     // on clicking the relevant button
@@ -61,13 +64,26 @@ $(document).ready(function () {
     $("#searchButton").click(function () {
         $(".textHide").hide();
         $(".infoContainer").show();
-        $(".blueLagoon").hide();
+   
         cockName = $("#first_name").val();
-        console.log("cockname: " + cockName);
+       
         cockName = cockName.replace(/\s/g, "_");
-        console.log("No space: " + cockName);
+        
+        if (cockName == "") {
+            M.toast({
+                html: "<div class='message'>Not found!</div>",
+                classes: 'rounded',
+                displayLength: 1500,
 
-        getCocktail();
+            })
+        }
+
+        else {
+            getCocktail();
+
+        }
+
+        
         $("#first_name").val("");
 
     });
@@ -75,7 +91,7 @@ $(document).ready(function () {
     $("#ingButton").click(function () {
         $(".textHide").hide();
         $(".infoContainer").show();
-        $(".blueLagoon").hide();
+       
         ingredName = $("#second_name").val();
 
         ingredName = ingredName.replace(/\s/g, "_");
@@ -133,7 +149,7 @@ function getCocktail() {
     var cocktailURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + cockName;
 
     $.getJSON(cocktailURL, function (response) {
-        if (response.drinks === null || cockName == "") {
+        if (response.drinks === null) {
   
             M.toast({
                 html: "<div class='message'>Not found!</div>",
@@ -145,6 +161,7 @@ function getCocktail() {
 
         //display the coctail detail page
         // display the image
+        $(".blueLagoon").hide();
 
         $(".cocktailThumb").attr("src", response.drinks[0].strDrinkThumb);
         // display the instructions
@@ -291,7 +308,7 @@ function getIngredSuggestions() {
 
         //display the coctail detail page
         // display the image
-
+        $(".blueLagoon").hide();
         $(".cocktailThumb").attr("src", ingResponse.drinks[0].strDrinkThumb);
 
         $("#strDrink").text(ingResponse.drinks[0].strDrink);
