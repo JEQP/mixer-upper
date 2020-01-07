@@ -9,7 +9,6 @@ var currentInfoWindow = null;
 var markerArr = [];
 
 function myMap(lat, lon) {
-    console.log(lat, lon);
     var currentPosition = new google.maps.LatLng(lat, lon);
     var mapProp = {
         center: currentPosition,
@@ -31,7 +30,6 @@ function callbackNearbySearch(results, status) {
     if (status != google.maps.places.PlacesServiceStatus.OK) {
         return;
     } else {
-        // console.log("results: ", results);
         createMarkers(results);
         createList(results);
     }
@@ -40,7 +38,6 @@ function callbackNearbySearch(results, status) {
 
 function createList(places) { 
     for (var i = 0; i<places.length; i++) {
-        //console.log(places[i]);
         var name = places[i].name;
         var reference = places[i].reference;
         var vicinity = places[i].vicinity;
@@ -66,7 +63,6 @@ function createList(places) {
 
         var listItem = (i+1) + ". " + name +  
         ", Rating: " + rating + " " + user_rating_symbol + " (" + user_ratings_total + ") " + price_level_symbol;
-        // console.log(listItem);
         var loadingStr = "Loading..."
 
         var ul = $("<ul>");
@@ -95,12 +91,9 @@ function createList(places) {
 }
 
 function showDetailsInList(element){
-    // console.log("collapse onOpen was fired!");
     var collapsibleBody = $(element).find('.collapsible-body');
     var referenceVal = collapsibleBody.attr("reference");
-    // console.log("reference: ", referenceVal);
     var id = collapsibleBody.attr("id");
-    // console.log(id);
 
     // Trigger click on the map for the correspoing item when an item on list is selected. 
     var makerArrIndex = id.replace("-cbody","");
@@ -108,7 +101,6 @@ function showDetailsInList(element){
 
     var request = { reference: referenceVal };
     service.getDetails(request, function (place, status) {
-        console.log("callbackGetDetails(place: " , place);
         var contentString = "";
 
         // Add Photo
@@ -140,8 +132,6 @@ function showDetailsInList(element){
         // Add Google Map URL
         contentString = contentString + "<b> <a href='" + place.url +"' target='_blank'>Google Map</a> </b>";
 
-        // console.log("PhotoURL: "+ photoUrl);
-        //console.log(contentString);
 
         $("#" + id).html(contentString);
     })
@@ -179,12 +169,10 @@ function createMarkers(places) {
 
 function addInfoListener(marker, place) {
     google.maps.event.addListener(marker, 'click', function () {
-        // console.log("inside addListener", marker);
         var request = { reference: place.reference };
         // getDetails() must be called only when mouse is clicked.
         // If you call many times consecutively, access will be denied. 
         service.getDetails(request, function (place, status) {
-            // console.log("callbackGetDetails(place: " + place, " status: ", status, ")");
 
             var contentString = place.name + "<br>" +
                                 place.formatted_address + "<br>" + 
@@ -197,7 +185,6 @@ function addInfoListener(marker, place) {
 
             contentString = contentString + "<a href='" + place.url +"' target='_blank'>Google Map</a>";
 
-            //console.log(contentString);
             // close window when another one is being opened.
             if (currentInfoWindow){
                 currentInfoWindow.close();
@@ -208,7 +195,7 @@ function addInfoListener(marker, place) {
             infowindow.open(map, marker);
             currentInfoWindow = infowindow;
         }) // end of getDetails()
-    }) // ebd of addListener()
+    }) // end of addListener()
 }
 
 
