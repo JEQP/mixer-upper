@@ -8,4 +8,11 @@ The page includes buttons to post to Twitter and Facebook, as well as a button t
 
 Materialize was used for CSS, and the header includes the carousel feature, and can be seen mid-change in the first image. Javascript uses the Jquery library, and the Montserrat font family is from Google Fonts. The details for the cocktails are drawn from The Cocktail Database (thecocktaildb.com) through its API. 
 
+Contributors:
+Takuji Okubo || James Pearce || Tonnette Stanford
+
 Deployed URL: https://jeqp.github.io/mixer-upper/index.html
+
+![Main Page](https://github.com/JEQP/JPortfolio2/blob/master/mixer-upper01.jpg)
+![Cocktail Card](https://github.com/JEQP/JPortfolio2/blob/master/mixer-upper02.jpg)
+![Map](https://github.com/JEQP/JPortfolio2/blob/master/mixer-upper03.jpg)
