@@ -13,6 +13,6 @@ Takuji Okubo || James Pearce || Tonnette Stanford
 
 Deployed URL: https://jeqp.github.io/mixer-upper/index.html
 
-![Main Page](https://github.com/JEQP/JPortfolio2/blob/master/mixer-upper01.jpg)
-![Cocktail Card](https://github.com/JEQP/JPortfolio2/blob/master/mixer-upper02.jpg)
-![Map](https://github.com/JEQP/JPortfolio2/blob/master/mixer-upper03.jpg)
+![Main Page](https://github.com/JEQP/mixer-upper/blob/master/mixer-upper01.jpg)
+![Cocktail Card](https://github.com/JEQP/mixer-upper/blob/master/mixer-upper02.jpg)
+![Map](https://github.com/JEQP/mixer-upper/blob/master/mixer-upper03.jpg)
