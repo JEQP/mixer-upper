@@ -2,17 +2,6 @@
 
 var cockName = "string";
 
-// Searching for margarita returns an array of five drinks with margarita in the title.
-// searching for "tequila sunrise" didn't work. Searching for "tequila" returned an array of five drinks.
-// searching for "manhattan" returns an array of one drink
-// To search for two word names the space must be underscore. IE, "tequila_sunrise" returns an array of one drink
-
-// FEATURE 1 -- Search for Cocktail By Name
-
-// Get input from form
-
-// convert input to have underscores
-
 
 $(document).ready(function () {
     $('.carousel.carousel-slider').carousel({
@@ -22,10 +11,8 @@ $(document).ready(function () {
           $('.carousel').carousel('next')
       }, 5000);
 
+    // sets up landing page
 
-    // on clicking the relevant button
-    // gets input from form with id text1
-    // replaces spaces in name with underscore
     $(".blueLagoon").click(function () {
         $(".textHide").hide();
         $(".infoContainer").show();
@@ -61,11 +48,14 @@ $(document).ready(function () {
         });
     }
 
+// event handler for name search
+
     $("#searchButton").click(function () {
         $(".textHide").hide();
         $(".infoContainer").show();
    
         cockName = $("#first_name").val();
+
        
         cockName = cockName.replace(/\s/g, "_");
         
@@ -88,31 +78,26 @@ $(document).ready(function () {
 
     });
 
+    // event handler for ingredient search
+
     $("#ingButton").click(function () {
         $(".textHide").hide();
         $(".infoContainer").show();
-       
         ingredName = $("#second_name").val();
-
         ingredName = ingredName.replace(/\s/g, "_");
-      
-
         getIngredSuggestions();
         $("#second_name").val("");
     });
 
+    // fills the cards with random cocktails
     for (var i = 5; i > 0; i--) {
         let cardID = "card-" + (i - 1); // if we use var the for loop will finish before the first ajax call comes back, so all the ajax calls will use card-1. "let" prevents this.
-        console.log("random cardID: " + cardID);
         var randomURL = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
         $.getJSON(randomURL, function (randomCock) {
-            console.log("random: " + randomCock);
-            console.log("card: " + cardID);
             $("#" + cardID).find("img").attr("src", randomCock.drinks[0].strDrinkThumb);
             $("#" + cardID).find(".card-title").text(randomCock.drinks[0].strDrink);
             $("#" + cardID).find(".card-content").text(randomCock.drinks[0].strCategory);
             $("#" + cardID).find(".card-action").attr("href", "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + randomCock.drinks[0].strDrink);
-            console.log("url: " + $("#" + cardID).find(".card-action").attr("href"));
         });
     }
 });
@@ -214,34 +199,12 @@ function getCocktail() {
             $("#strIngredients").append("<li>" + response.drinks[0].strIngredient15 + " " + response.drinks[0].strMeasure15);
         }
 
-
-
-        console.log("name: " + response.drinks[0].strDrink); //name of cocktail
-        console.log("Instructions: " + response.drinks[0].strInstructions); // instructions
-        console.log("img: " + response.drinks[0].strDrinkThumb); // image
-        console.log("ing: " + response.drinks[0].strIngredient1); // ingredients are listed seperately. We'll need code to go through and eliminate null entries
-        console.log("measure: " + response.drinks[0].strMeasure1); // this is the measure for the ingredients. 1 matches with 1
         window.scrollTo(0, 0);
         fillCards(response);
 
     });
 }
-// get cocktails by ingredient
-// this gives an array of cocktails with name, image and cocktail ID. They can be displayed, and linked through to the actual cocktail. 
 
-
-
-
-
-// function getIngredSuggestions(ingredName) {
-//     var ingredURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + ingredName;
-
-//     $.getJSON(ingredURL, function (response) {
-//         console.log("ton ingredients " + response);
-//         ingFillCards(response);
-
-//     });
-// }
 
 
 // This function is to fill the cards on the page with relevant data
@@ -255,33 +218,26 @@ function fillCards(response) {
             $("#" + cardID).find(".card-title").text(response.drinks[i].strDrink);
             $("#" + cardID).find("p").text(response.drinks[i].strCategory);
             $("#" + cardID).find(".card-action").attr("href", "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + response.drinks[i].strDrink);
-            console.log("url: " + $("#" + cardID).find(".card-action").attr("href"));
         }
     }
     // if there are less than 5 items in the array, fill the remaining cards with random content.
     else {
         for (var i = 1; i < response.drinks.length; i++) {
             var cardID = "card-" + i;
-            console.log("card: " + cardID);
             $("#" + cardID).find("img").attr("src", response.drinks[i].strDrinkThumb);
             $("#" + cardID).find(".card-title").text(response.drinks[i].strDrink);
             $("#" + cardID).find(".card-content").text(response.drinks[i].strCategory);
             $("#" + cardID).find(".card-action").attr("href", "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + response.drinks[i].strDrink);
-            console.log("url: " + $("#" + cardID).find(".card-action").attr("href"));
         }
 
         for (var i = 5; i > response.drinks.length; i--) {
             let cardID = "card-" + (i - 1); // if we use var the for loop will finish before the first ajax call comes back, so all the ajax calls will use card-1. "let" prevents this.
-            console.log("random cardID: " + cardID);
             var randomURL = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
             $.getJSON(randomURL, function (randomCock) {
-                console.log("random: " + randomCock);
-                console.log("card: " + cardID);
                 $("#" + cardID).find("img").attr("src", randomCock.drinks[0].strDrinkThumb);
                 $("#" + cardID).find(".card-title").text(randomCock.drinks[0].strDrink);
                 $("#" + cardID).find(".card-content").text(randomCock.drinks[0].strCategory);
                 $("#" + cardID).find(".card-action").attr("href", "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + randomCock.drinks[0].strDrink);
-                console.log("url: " + $("#" + cardID).find(".card-action").attr("href"));
             });
 
         }
@@ -296,12 +252,7 @@ function getIngredSuggestions() {
 
     var ingredURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + ingredName;
 
-    console.log("ingredURL: " + ingredURL);
     $.getJSON(ingredURL, function (ingResponse) {
-        console.log("ingresponse: " + ingResponse);
-        console.log("ingredURL: " + ingredURL);
-
-
         //display the coctail detail page
         // display the image
         $(".blueLagoon").hide();
@@ -316,18 +267,6 @@ function getIngredSuggestions() {
 
 
         $.getJSON(resultURL, function (myResult) {
-            // if (myResult.drinks[0]== "") {
-            //     console.log("tonnette wants to know what is ing response.drinks " + myResult.drinks[0].strInstructions);
-            //     $(".blueLagoon").show();
-            //     // alert("drink not found");
-            //     M.toast({
-            //         html: "<div class='message'>Not found!</div>",
-            //         classes: 'rounded',
-            //         displayLength: 1500,
-    
-            //     })
-            // }
-            
             
             $(".cocktailThumb").attr("src", myResult.drinks[0].strDrinkThumb);
             // display the instructions
@@ -433,26 +372,21 @@ function ingfillCards(ingResponse) {
     else {
         for (var i = 1; i < ingResponse.drinks.length; i++) {
             var cardID = "card-" + i;
-            console.log("card: " + cardID);
             $("#" + cardID).find("img").attr("src", ingResponse.drinks[i].strDrinkThumb);
             $("#" + cardID).find(".card-title").text(ingResponse.drinks[i].strDrink);
             $("#" + cardID).find(".card-content").text(ingResponse.drinks[i].strCategory);
             $("#" + cardID).find(".card-action").attr("href", "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + ingResponse.drinks[i].strDrink);
-            console.log("url: " + $("#" + cardID).find(".card-action").attr("href"));
+    
         }
 
         for (var i = 5; i > ingResponse.drinks.length; i--) {
             let cardID = "card-" + (i - 1); // if we use var the for loop will finish before the first ajax call comes back, so all the ajax calls will use card-1. "let" prevents this.
-            console.log("random cardID: " + cardID);
             var randomURL = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
             $.getJSON(randomURL, function (randomCock) {
-                console.log("random: " + randomCock);
-                console.log("card: " + cardID);
                 $("#" + cardID).find("img").attr("src", randomCock.drinks[0].strDrinkThumb);
                 $("#" + cardID).find(".card-title").text(randomCock.drinks[0].strDrink);
                 $("#" + cardID).find(".card-content").text(randomCock.drinks[0].strCategory);
                 $("#" + cardID).find(".card-action").attr("href", "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + randomCock.drinks[0].strDrink);
-                console.log("url: " + $("#" + cardID).find(".card-action").attr("href"));
             });
 
         }
@@ -462,69 +396,6 @@ function ingfillCards(ingResponse) {
 
 
 }
-
-
-// // for (var x in response.drinks[0]){
-// //     if (x.indexOf("strIngredient")){
-// //         console.log("The key is: "+x);
-// //     }
-
-// // }
-// console.log("reposne drinks: "+response.drinks.length);
-// console.log("reposne first drink : "+response.drinks[0].length);
-// // for(var x=0;x<response.drinks.length;x++){
-//     for(var x=0;x<1;x++){
-//    // console.log("x is "+response.drinks[x].strIngredient1);
-//    // var someArray = JSON.parse(response.drinks[x]);
-//     console.log(Object.keys(response.drinks[x]));
-
-//     var someArray = Object.keys(response.drinks[x]);
-
-//     for(var key = 0; key<someArray.length;key++){
-//         console.log("The key is: "+someArray[key] + " index  is "+key);
-
-//         if(someArray[key] ==='strIngredient1')     console.log(response.drinks[0].someArray[key])
-//         // if (someArray[key].indexOf("strIngredient") >-1){
-//         //     console.log("The key is: "+someArray[key] + " index  is "+key);
-//         //     var reponseKey = response.drinks[0].someArray[key];
-//         //     console.log(reponseKey);
-//         // }
-//     }
-//    // console.log("inside line ")
-//     // if (x.indexOf("strIngredient")){
-//     //             console.log("The key is: "+x);
-//     //             //x = response.drinks[0].strIngredient6
-//     //         }
-// }
-
-
-// for (var i=1; i<16; i++){
-//     var ingString="response.drinks[0].strIngredient"+i;
-// //   console.log("this shuld work : "+ response.drinks[0].strMeasure+i);
-//     if (ingString===null){
-//         return;
-//     }
-//     else{
-//         console.log("ing: "+ingString);
-//     }
-// }
-
-
-
-
-
-
-// console.log("name: " + response.drinks[0].strDrink); //name of cocktail
-// console.log("Instructions: " + response.drinks[0].strInstructions); // instructions
-// console.log("img: " + response.drinks[0].strDrinkThumb); // image
-// console.log("ing: " + response.drinks[0].strIngredient1); // ingredients are listed seperately. We'll need code to go through and eliminate null entries
-// console.log("measure: " + response.drinks[0].strMeasure1); // this is the measure for the ingredients. 1 matches with 1
-
-
-// Searching for ingredient returns an array of drinks, just the name, image and id. We can use the id to search for the particular drink.
-// console.log("name: "+response.drinks[0].strDrink); // Name of Drink
-// console.log("img: "+response.drinks[0].strDrinkThumb); // img of drink
-// console.log("id: "+response.drinks[0].idDrink); // id of drink
 
 
 $("#startButton").click(function (event) {
@@ -543,32 +414,8 @@ $("#startButton").click(function (event) {
 $(".card-image").click(function (event) {
     event.stopPropagation();
     cockName = $(this).find(".card-title").text();
-    console.log("click title: " + $(this).find(".card-title").text());
     $(".textHide").hide();
     $(".infoContainer").show();
-
+    $(".blueLagoon").hide();
     getCocktail();
 })
-
-
-// $(".card-action").click(function (event) {
-//     event.stopPropagation();
-
-
-//     console.log("url: " + $(this).parent().find(".card-action").attr("href"));
-//     cockName =  $(this).parent().find(".card-action").attr("href");
-//     console.log("link clicked: " + cockName);
-
-// })
-// Do delegation to get ID
-// change cockName to the name on the card (do we want to store cocktail IDs at this point?)
-// call getCocktail()
-
-
-// creating ingredients list
-// 
-
-// create ingredient measure line
-// I'm PRETTY SURE the longest ingredient name is twenty characters
-
-// var ingString="response.drink[0].strIngredient"+i;
